@@ -19,18 +19,21 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-// Middleware untuk jika sudah login maka tidak boleh akses halaman untuk login, sehingga akan meredirect ke /home
-Route::middleware(['guest'])->group(function(){
-    Route::get('/session',[SessionController::class, 'index'])->name('login');
-    Route::post('/session',[SessionController::class, 'login']);
-});
 Route::get('/home', function () {
     return redirect('/');
 });
-Route::middleware(['auth'])->group(function(){
-    Route::get('/logout',[SessionController::class, 'logout']);
-});
+
+// MENGENAI SESSION (LOGIN DAN LOGOUT)
+// jika sudah login maka tidak boleh akses halaman untuk login, sehingga akan meredirect ke /home
+Route::get('/session',[SessionController::class, 'index'])->name('login')->middleware('guest');
+// hanya tamu dan karyawan untuk membuat akun khusus karyawan lainnya
+Route::get('/session/register',[SessionController::class, 'register'])->middleware('guestOrKaryawan'); 
+
+Route::post('/session/login',[SessionController::class, 'login']);
+Route::post('/session/create',[SessionController::class, 'create']);
+Route::get('/session/berhasil',[SessionController::class, 'berhasil']);
+Route::get('/logout',[SessionController::class, 'logout'])->middleware('auth');
+// AKHIR SESSION
 
 
 Route::get('/admin',[AdminController::class, 'index'])->middleware('auth', 'isKaryawan');
