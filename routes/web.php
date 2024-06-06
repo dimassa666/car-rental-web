@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return redirect('/');
+    return redirect('index');
 });
 Route::get('/contact', function () {
     return view('contact');
