@@ -35,7 +35,7 @@ class SessionController extends Controller
             // cek role pengguna dan redirect ke halaman tertentu
             if (Auth::user()->role == 'karyawan') {
                 // jika peran pengguna adalah 'karyawan', arahkan ke halaman admin
-                return redirect('/admin');
+                return redirect('/dashboard');
             } elseif (Auth::user()->role == 'pelanggan') {
                 // jika peran pengguna adalah 'pelanggan', arahkan ke halaman pelanggan
                 return redirect('/');
