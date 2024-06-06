@@ -62,6 +62,90 @@ body {
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
+
+  /* style.css */
+  .blue-box {
+    background-color: #007bff; /* Bootstrap primary blue color */
+    color: white; /* White text for contrast */
+    padding: 15px;
+    border-radius: 50px;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 50px; /* Distance from the top */
+  }
+
+/* Add styles for login button */
+#login-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Add styles for profile picture */
+#profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;
+  margin-top: -25px; /* Adjust this value to move the image up */
+  margin-left: 50px; /* Adjust this value to move the image to the right */
+}
+/*booking section */
+/* style.css */
+.container-flex {
+  display: flex;
+  width: 100%;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.right-column {
+  flex: 0 0 300px;
+  margin-left: 20px;
+}
+
+.rental-form-box, .total-cost-box {
+  background-color: #fff; /* Background warna putih */
+  padding: 20px; /* Padding di dalam form box */
+  border-radius: 25px; /* Border radius untuk membuat sudut lebih membulat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+.total-cost-box {
+  background-color: #007bff; /* Warna biru utama Bootstrap */
+  color: white; /* Teks warna putih */
+  padding: 15px;
+  border-radius: 25px !important; /* Menetapkan nilai border-radius dengan keutamaan */
+  position: -webkit-sticky; /* Untuk Safari */
+  position: sticky;
+  top: 50px; /* Jarak dari atas */
+}
+
+
+.important-info {
+  background-color: #fff; /* Background warna putih */
+  padding: 20px;
+  border-radius: 25px; /* Border radius untuk sudut membulat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+.important-info h2 {
+  color: #343a40; /* Warna teks abu-abu gelap */
+}
+
+.important-info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.important-info li {
+  margin-bottom: 10px;
+}
+
 hr {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;

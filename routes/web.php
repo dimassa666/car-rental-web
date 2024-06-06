@@ -25,6 +25,18 @@ Route::get('/home', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/car', function () {
+    return view('car');
+});
+Route::get('/booking', function () {
+    return view('booking');
+});
+Route::get('/car-single', function () {
+    return view('car-single');
+});
 
 
 // MENGENAI SESSION (LOGIN DAN LOGOUT)
