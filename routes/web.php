@@ -22,6 +22,10 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return redirect('/');
 });
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 
 // MENGENAI SESSION (LOGIN DAN LOGOUT)
 // jika sudah login maka tidak boleh akses halaman untuk login, sehingga akan meredirect ke /home
