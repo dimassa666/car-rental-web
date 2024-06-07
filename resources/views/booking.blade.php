@@ -61,6 +61,9 @@
                 <li>Dengan memilih Book & Pay Later, Anda setuju dengan Ketentuan Pemesanan, Kebijakan dan Aturan Rental Mobil, Syarat & Ketentuan, dan Kebijakan Privasi.</li>
             </ul>
         </div>
+        <div class="rent-now-box">
+            <a href="#" class="btn btn-primary" id="rent-now-button">Sewa Sekarang</a>
+        </div>
     </div>
     <div class="right-column">
         <div class="total-cost-box border rounded p-3 mb-4 sticky-top">

@@ -145,6 +145,31 @@ body {
 .important-info li {
   margin-bottom: 10px;
 }
+/* Gaya untuk box tombol Sewa Sekarang */
+.rent-now-box {
+  width: 100%; /* Sesuaikan dengan lebar yang diperlukan */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center; /* Agar tombol berada di tengah */
+}
+
+#rent-now-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff; /* Warna biru utama Bootstrap */
+  color: white; /* Teks warna putih */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+#rent-now-button:hover {
+  background-color: #0056b3; /* Warna biru lebih gelap saat hover */
+  color: #fff; /* Teks tetap putih saat hover */
+}
 
 hr {
   -webkit-box-sizing: content-box;
