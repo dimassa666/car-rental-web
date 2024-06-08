@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('status', ['aktif', 'kedaluwarsa']); 
             $table->unsignedBigInteger('karyawan_id');  
 
-            // Foreign key constraint
             $table->foreign('karyawan_id')->references('id')->on('users');
 
             $table->timestamps();

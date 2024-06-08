@@ -18,4 +18,9 @@ class Voucher extends Model
         'status',
         'karyawan_id',
     ];
+
+    public function karyawan()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

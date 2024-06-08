@@ -42,6 +42,6 @@ Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth
 
 
 // dashboard voucher
-Route::resource('/dashboard/voucher', DashboardVoucherController::class)->middleware('auth', 'isKaryawan');
+Route::resource('/dashboard/voucher', DashboardVoucherController::class)->middleware('isKaryawan');
 // dashboard kendaraan
-Route::resource('/dashboard/kendaraan', DashboardKendaraanController::class)->middleware('auth', 'isKaryawan');
+Route::resource('/dashboard/kendaraan', DashboardKendaraanController::class)->middleware('isKaryawan');
