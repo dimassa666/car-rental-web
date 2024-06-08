@@ -1,25 +1,8 @@
 @extends('layout/aplikasi')
 
 @section('konten')
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">Lucky<span>Ride</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="oi oi-menu"></span> Menu
-    </button>
 
-    <div class="collapse navbar-collapse" id="ftco-nav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="/car" class="nav-link">Cars Book</a></li>
-        <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-         </div><li id="login-section"><a href="/session" id="login-button">Login</a></li>
-
-      </ul> 
-  </div>
-</nav>
-<!-- END nav -->
+<x-mainnavbar></x-mainnavbar>
 
 <div class="hero-wrap ftco-degree-bg" style="background-image: url('main/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
   <div class="overlay"></div>
@@ -319,5 +302,7 @@
     </div>
   </div>
 </section>	
+
+<x-mainfooter></x-mainfooter>
 
 @endsection

@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardKendaraanController;
+use App\Http\Controllers\DashboardVoucherController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +54,10 @@ Route::get('/logout',[SessionController::class, 'logout'])->middleware('auth');
 // AKHIR SESSION
 
 
-Route::get('/admin',[AdminController::class, 'index'])->middleware('auth', 'isKaryawan');
+Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth', 'isKaryawan');
+
+
+// dashboard voucher
+Route::resource('/dashboard/voucher', DashboardVoucherController::class)->middleware('isKaryawan');
+// dashboard kendaraan
+Route::resource('/dashboard/kendaraan', DashboardKendaraanController::class)->middleware('isKaryawan');
