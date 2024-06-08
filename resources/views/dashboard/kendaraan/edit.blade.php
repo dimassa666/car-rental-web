@@ -13,13 +13,20 @@
                     <h6 class="m-0 font-weight-bold text-primary">Form Edit Kendaraan</h6>
                 </div>
                 <div class="card-body">
-                    <form action="/dashboard/kendaraan/{{ $kendaraan->kendaraan_id }}" method="post">
+                    <form action="/dashboard/kendaraan/{{ $kendaraan->kendaraan_id }}" method="post"
+                        enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
-                            <input type="text" class="form-control @error('kategori') is-invalid @enderror"
-                                id="kategori" name="kategori" value="{{ old('kategori', $kendaraan->kategori) }}">
+                            <select class="form-control @error('kategori') is-invalid @enderror" id="kategori"
+                                name="kategori">
+                                <option value="mobil"
+                                    {{ old('kategori', $kendaraan->kategori) === 'mobil' ? 'selected' : '' }}>Mobil</option>
+                                <option value="minibus"
+                                    {{ old('kategori', $kendaraan->kategori) === 'minibus' ? 'selected' : '' }}>Minibus
+                                </option>
+                            </select>
                             @error('kategori')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -29,8 +36,9 @@
 
                         <div class="form-group">
                             <label for="jenis">Jenis</label>
-                            <input type="text" class="form-control @error('jenis') is-invalid @enderror" id="jenis"
-                                name="jenis" value="{{ old('jenis', $kendaraan->jenis) }}">
+                            <select class="form-control @error('jenis') is-invalid @enderror" id="jenis" name="jenis">
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
                             @error('jenis')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -62,8 +70,15 @@
 
                         <div class="form-group">
                             <label for="transmisi">Transmisi</label>
-                            <input type="text" class="form-control @error('transmisi') is-invalid @enderror"
-                                id="transmisi" name="transmisi" value="{{ old('transmisi', $kendaraan->transmisi) }}">
+                            <select class="form-control @error('transmisi') is-invalid @enderror" id="transmisi"
+                                name="transmisi">
+                                <option value="otomatis"
+                                    {{ old('transmisi', $kendaraan->transmisi) === 'otomatis' ? 'selected' : '' }}>Otomatis
+                                </option>
+                                <option value="manual"
+                                    {{ old('transmisi', $kendaraan->transmisi) === 'manual' ? 'selected' : '' }}>Manual
+                                </option>
+                            </select>
                             @error('transmisi')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -113,8 +128,7 @@
                                     {{ old('status', $kendaraan->status) === 'tersedia' ? 'selected' : '' }}>Tersedia
                                 </option>
                                 <option value="tidak"
-                                    {{ old('status', $kendaraan->status) === 'tidak' ? 'selected' : '' }}>Tidak
-                                    Tersedia
+                                    {{ old('status', $kendaraan->status) === 'tidak' ? 'selected' : '' }}>Tidak Tersedia
                                 </option>
                             </select>
                             @error('status')
@@ -124,10 +138,74 @@
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="foto">Foto</label>
+                            <img src="{{ asset('storage/' . $kendaraan->foto) }}"
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input @error('foto') is-invalid @enderror"
+                                    id="foto" name="foto" onchange="previewImage()">
+                                <label class="custom-file-label" for="foto">Pilih file</label>
+                                @error('foto')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const kategoriSelect = document.getElementById('kategori');
+            const jenisSelect = document.getElementById('jenis');
+
+            const jenisOptions = {
+                mobil: ['suv', 'mpv', 'sedan', 'sport', 'convertible', 'elektrik', 'lcgc'],
+                minibus: ['minibus']
+            };
+
+            function updateJenisOptions() {
+                const selectedKategori = kategoriSelect.value;
+                const availableJenis = jenisOptions[selectedKategori];
+
+                jenisSelect.innerHTML = '';
+                availableJenis.forEach(jenis => {
+                    const option = document.createElement('option');
+                    option.value = jenis;
+                    option.textContent = jenis.charAt(0).toUpperCase() + jenis.slice(1);
+                    option.selected = jenis === "{{ old('jenis', $kendaraan->jenis) }}";
+                    jenisSelect.appendChild(option);
+                });
+            }
+
+            kategoriSelect.addEventListener('change', updateJenisOptions);
+            updateJenisOptions();
+
+            const fotoInput = document.getElementById('foto');
+            fotoInput.addEventListener('change', function() {
+                const fileName = this.files[0].name;
+                const nextSibling = this.nextElementSibling;
+                nextSibling.innerHTML = fileName;
+                previewImage();
+            });
+
+            function previewImage() {
+                const image = document.querySelector('#foto');
+                const imgPreview = document.querySelector('.img-preview');
+
+                imgPreview.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFREvent) {
+                    imgPreview.src = oFREvent.target.result;
+                }
+            }
+        });
+    </script>
 @endsection

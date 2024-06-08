@@ -21,5 +21,6 @@ class Kendaraan extends Model
         'harga_sewa',
         'plat_nomor',
         'status',
+        'foto',
     ];
 }

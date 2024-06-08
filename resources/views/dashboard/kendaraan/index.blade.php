@@ -23,7 +23,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Mobil</th>
+                            <th>Kendaraan</th>
                             <th>Gambar</th>
                             <th>Plat nomor</th>
                             <th>Harga Sewa</th>
@@ -39,8 +39,12 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-uppercase">{{ $item->merk }} {{ $item->tipe }}
-                                    {{ $item->tahun_produksi }}</td>
-                                <td>GAMBAR MOBIL</td>
+                                    {{ $item->tahun_produksi }}
+                                </td>
+                                <td>
+                                    <img src="{{ asset('storage/' . $item->foto) }}" alt="gambar mobil {{ $item->tipe }}"
+                                        class="img-fluid rounded" style="max-width: 150px; height: auto;">
+                                </td>
                                 <td>{{ $item->plat_nomor }}</td>
                                 <td>{{ $item->harga_sewa }}</td>
                                 <td>{{ $item->status }}</td>

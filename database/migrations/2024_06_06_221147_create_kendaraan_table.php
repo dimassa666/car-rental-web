@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('harga_sewa');
             $table->string('plat_nomor', 10);
             $table->string('status', 20);
+            $table->string('foto');
             $table->timestamps();
         });
     }

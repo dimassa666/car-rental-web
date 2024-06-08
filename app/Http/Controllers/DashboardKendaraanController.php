@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardKendaraanController extends Controller
 {
@@ -30,15 +31,20 @@ class DashboardKendaraanController extends Controller
     {
         $request->validate([
             'kategori' => 'required|string|max:10|in:mobil,minibus',
-            'jenis' => 'required|string|max:20',
+            'jenis' => 'required|string|max:20|in:suv,mpv,sedan,sport,convertible,elektrik,lcgc,minibus',
             'merk' => 'required|string|max:50',
             'tipe' => 'required|string|max:50',
             'transmisi' => 'required|string|max:10|in:otomatis,manual',
-            'tahun_produksi' => 'required|string|max:5',
+            'tahun_produksi' => 'required|string|max:4',
             'harga_sewa' => 'required|numeric',
             'plat_nomor' => 'required|string|max:10',
             'status' => 'required|in:tersedia,tidak',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $file = $request->file('foto');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('imgkendaraan', $filename);
 
         Kendaraan::create([
             'kategori' => $request->kategori,
@@ -50,6 +56,7 @@ class DashboardKendaraanController extends Controller
             'harga_sewa' => $request->harga_sewa,
             'plat_nomor' => $request->plat_nomor,
             'status' => $request->status,
+            'foto' => $path,
         ]);
 
         return redirect('/dashboard/kendaraan')->with('success', 'Kendaraan berhasil ditambahkan.');
@@ -60,7 +67,9 @@ class DashboardKendaraanController extends Controller
      */
     public function show(Kendaraan $kendaraan)
     {
-        //
+        return view('dashboard/kendaraan/show', [ 
+            'kendaraan' => $kendaraan,
+         ]);
     }
 
     /**
@@ -80,15 +89,28 @@ class DashboardKendaraanController extends Controller
     {
         $request->validate([
             'kategori' => 'required|string|max:10|in:mobil,minibus',
-            'jenis' => 'required|string|max:20',
+            'jenis' => 'required|string|max:20|in:suv,mpv,sedan,sport,convertible,elektrik,lcgc,minibus',
             'merk' => 'required|string|max:50',
             'tipe' => 'required|string|max:50',
             'transmisi' => 'required|string|max:10|in:otomatis,manual',
-            'tahun_produksi' => 'required|string|max:5',
+            'tahun_produksi' => 'required|string|max:4',
             'harga_sewa' => 'required|numeric',
             'plat_nomor' => 'required|string|max:10',
             'status' => 'required|in:tersedia,tidak',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $path = $kendaraan->foto;
+        // jika foto juga diubah
+        if ($request->hasFile('foto')) {
+            // hapus foto
+            if ($kendaraan->foto) {
+                Storage::delete($kendaraan->foto);
+            }
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('imgkendaraan', $filename);
+        }
 
         $kendaraan->update([
             'kategori' => $request->kategori,
@@ -100,6 +122,7 @@ class DashboardKendaraanController extends Controller
             'harga_sewa' => $request->harga_sewa,
             'plat_nomor' => $request->plat_nomor,
             'status' => $request->status,
+            'foto' => $path,
         ]);
 
         return redirect('/dashboard/kendaraan')->with('success', 'Kendaraan berhasil diperbarui.');
@@ -110,6 +133,8 @@ class DashboardKendaraanController extends Controller
      */
     public function destroy(Kendaraan $kendaraan)
     {
+        Storage::delete($kendaraan->foto);
+
         $kendaraan->delete();
 
         return redirect('/dashboard/kendaraan')->with('success', 'Kendaraan berhasil dihapus.');
