@@ -26,7 +26,7 @@
                             <th>Kendaraan</th>
                             <th>Gambar</th>
                             <th>Plat nomor</th>
-                            <th>Harga Sewa</th>
+                            <th>Harga sewa</th>
                             <th>Status</th>
                             <th>Aksi</th>
 
