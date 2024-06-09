@@ -3,7 +3,8 @@
 
 <head>
 
-    <title>Admin Dashboard</title>
+    <title>Lucky Dashboard</title>
+    <link rel="icon" href="{{ asset('img/lr_s.png') }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,10 +34,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="{{ asset('img/lr_wt.png') }}" alt="" width="40">
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin</div>
+                <div class="sidebar-brand-text mx-3">Lucky Dashboard</div>
             </a>
 
             <!-- Divider -->

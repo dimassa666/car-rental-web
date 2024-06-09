@@ -98,7 +98,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Pesanan ID: {{ $order->pesanan_id }}</div>
+                                        Pesanan ID: P{{ $order->pesanan_id }}</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">
                                         {{ $order->kendaraan->merk }}
                                         {{ $order->kendaraan->tipe }}
@@ -158,8 +158,9 @@
                                         <tr>
                                             <td>P{{ $pesanan->pesanan_id }}</td>
                                             <td class="text-capitalize">{{ $pesanan->users->nama }}</td>
-                                            <td class="text upper-case">{{ $pesanan->kendaraan->merk }}
-                                                {{ $pesanan->kendaraan->tipe }}</td>
+                                            <td class="text-uppercase">{{ $pesanan->kendaraan->merk }}
+                                                {{ $pesanan->kendaraan->tipe }}
+                                                {{ $pesanan->kendaraan->tahun_produksi }}</td>
                                             <td>{{ $pesanan->waktu_mulai }}</td>
                                             <td>{{ $pesanan->waktu_selesai }}</td>
                                             <td>{{ $pesanan->status_pesanan }}</td>
