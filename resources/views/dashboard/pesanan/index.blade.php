@@ -36,7 +36,7 @@
 
                         @foreach ($pesanan as $item)
                             <tr>
-                                <td>PES{{ $item->pesanan_id }}</td>
+                                <td>P{{ $item->pesanan_id }}</td>
                                 <td class="text-uppercase text-truncate" style="max-width: 250px;">
                                     {{ $item->kendaraan->merk . ' ' . $item->kendaraan->tipe . ' ' . $item->kendaraan->tahun_produksi . ' ' . $item->kendaraan->transmisi . ' | ' . $item->kendaraan->plat_nomor }}
                                 </td>

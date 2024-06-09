@@ -25,8 +25,6 @@ class DashboardController extends Controller
             ->with('kendaraan', 'users')
             ->get();
 
-
-
         $totalUsers = User::count();
         $totalKendaraan = Kendaraan::count();
         $totalPesanan = Pesanan::count();
@@ -34,7 +32,7 @@ class DashboardController extends Controller
         $totalPembayaran = Pembayaran::count();
 
         $recentPesanan = Pesanan::with('users', 'kendaraan')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('pesanan_id', 'desc')
             ->limit(5)
             ->get();
 
