@@ -65,10 +65,10 @@
                     <span>Kendaraan</span></a>
             </li>
 
-            <li class="nav-item {{ Request::is('dashboard/pembayaran*') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard/pembayaran">
-                    <i class="fas fa-fw fa-credit-card"></i>
-                    <span>Pembayaran</span></a>
+            <li class="nav-item {{ Request::is('dashboard/pesanan*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/pesanan">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                    <span>Pesanan</span></a>
             </li>
 
             <li class="nav-item {{ Request::is('dashboard/voucher*') ? 'active' : '' }}">

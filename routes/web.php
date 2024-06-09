@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardKendaraanController;
+use App\Http\Controllers\DashboardPesananController;
 use App\Http\Controllers\DashboardVoucherController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -61,3 +62,7 @@ Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth
 Route::resource('/dashboard/voucher', DashboardVoucherController::class)->middleware('isKaryawan');
 // dashboard kendaraan
 Route::resource('/dashboard/kendaraan', DashboardKendaraanController::class)->middleware('isKaryawan');
+// dashb pesanan
+Route::get('/dashboard/pesanan',[DashboardPesananController::class, 'index'])->middleware('isKaryawan');
+Route::get('/dashboard/pesanan/{pesanan}',[DashboardPesananController::class, 'show'])->middleware('isKaryawan');
+Route::put('/dashboard/pembayaran/{id}', [DashboardPesananController::class, 'update'])->name('dashboard.pembayaran.update');

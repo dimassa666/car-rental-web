@@ -24,9 +24,9 @@ class Pesanan extends Model
         'lepas_kunci_id',
     ];
 
-    public function pelanggan()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'pelanggan_id', 'id');
     }
 
     public function kendaraan()
@@ -37,5 +37,14 @@ class Pesanan extends Model
     public function lepasKunci()
     {
         return $this->belongsTo(LepasKunci::class, 'lepas_kunci_id');
+    }
+    public function detailPesanan()
+    {
+        return $this->hasOne(DetailPesanan::class, 'pesanan_id');
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'pesanan_id');
     }
 }
