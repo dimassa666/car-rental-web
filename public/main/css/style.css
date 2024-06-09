@@ -63,17 +63,6 @@ body {
   outline: 0 !important; }
 
 
-  /* style.css */
-  .blue-box {
-    background-color: #007bff; /* Bootstrap primary blue color */
-    color: white; /* White text for contrast */
-    padding: 15px;
-    border-radius: 50px;
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 50px; /* Distance from the top */
-  }
-
 /* Add styles for login button */
 #login-button {
   padding: 10px 20px;
@@ -108,25 +97,23 @@ body {
   margin-left: 20px;
 }
 
-.rental-form-box, .total-cost-box {
+.rental-form-box {
+  color: var(--dark);
   background-color: #fff; /* Background warna putih */
   padding: 20px; /* Padding di dalam form box */
   border-radius: 25px; /* Border radius untuk membuat sudut lebih membulat */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  box-shadow: 0 4px 20px rgba(20, 0, 0, 0.1); /* Efek bayangan */
 }
-
-.total-cost-box {
-  background-color: #007bff; /* Warna biru utama Bootstrap */
-  color: white; /* Teks warna putih */
-  padding: 15px;
-  border-radius: 25px !important; /* Menetapkan nilai border-radius dengan keutamaan */
-  position: -webkit-sticky; /* Untuk Safari */
-  position: sticky;
-  top: 50px; /* Jarak dari atas */
+.rental-form-box h2{
+  font-weight: bolder;
 }
-
+.rental-form-box label{
+  font-weight:500;
+  font-size: 18px;
+}
 
 .important-info {
+  
   background-color: #fff; /* Background warna putih */
   padding: 20px;
   border-radius: 25px; /* Border radius untuk sudut membulat */
@@ -134,6 +121,7 @@ body {
 }
 
 .important-info h2 {
+  font-weight:bolder;
   color: #343a40; /* Warna teks abu-abu gelap */
 }
 
@@ -143,27 +131,97 @@ body {
 }
 
 .important-info li {
+  color: var(--gray);
   margin-bottom: 10px;
 }
-/* Gaya untuk box tombol Sewa Sekarang */
-.rent-now-box {
-  width: 100%; /* Sesuaikan dengan lebar yang diperlukan */
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  text-align: center; /* Agar tombol berada di tengah */
+.button-wrap {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  width: 100%; /* Menjadikan lebar wrapper sama dengan right-column */
+  height: 80px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px; /* Border radius untuk sudut membulat */
+  box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+
+}
+.checkout-btn {
+  padding: 12px 24px; /* Sesuaikan ukuran padding */
+  font-size: 20px; /* Sesuaikan ukuran font */
+  width: 98%; /* Sesuaikan lebar tombol */
+  height: 70px;
+  border-radius: 20px; /* Border radius untuk sudut membulat */
+  margin-top: 5px;
+  border: 0;
+  font-weight: bolder;
+
 }
 
-#rent-now-button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007bff; /* Warna biru utama Bootstrap */
-  color: white; /* Teks warna putih */
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 16px;
+
+.total-cost-box {
+  position: -webkit-sticky; /* Tambahkan untuk kompatibilitas dengan browser lama */
+  position: sticky;
+  top: 100px;
+  margin-bottom: 20px;
+  border-radius: 25px; /* Sesuaikan dengan sudut yang diinginkan */
+  width: 400px;
+  height: auto;
+  padding: 20px;
+  background-color: #fff;
+  color: var(--dark);
+  border: 0.01px solid rgb(212, 211, 211);
+  border-bottom: 6px solid var(--blue) ;
+  box-shadow: 0 4px 12px rgba(4, 0, 0, 0.1); /* Efek bayangan */
+
+}
+.total-cost-box h2{
+  color: var(--blue);
+  font-size:30px ;
+  font-weight:bolder;
+  margin-bottom: 20px;
+}
+.total-cost-box .cost-details {
+  display: flex;
+  flex-direction: column; /* Menata elemen secara vertikal */
+  flex-grow: 1;
+}
+
+.total-cost-box .form-group {
+  display: flex;
+  justify-content: space-between; /* Menempatkan elemen di sebelah kanan */
+  align-items: center; /* Mengatur elemen secara vertikal */
+  padding-bottom: 5px; /* Jarak antara baris */
+  margin-bottom: 5px; /* Jarak antara baris */
+}
+
+.total-cost-box .form-group:not(:nth-child(2)) {
+  border-bottom: 2.5px solid #ccc; /* Garis antara baris kecuali yang kedua */
+}
+.total-cost-box .form-group label {
+  margin-right: 10px; /* Jarak antara label dan nominal */
+  /* font-size: 18px; */
+
+}
+.total-cost-box .form-group.div{
+  font-size: 18px;
+  font-weight: 500;
+}
+.total-cost-box .form-group span {
+  /* font-size: 18px; */
+  color: var(--dark);
+  text-align: right; /* Mengatur teks ke kanan */
+}
+.total-cost-box .form-group.total-payment { 
+  font-weight: bolder;
+  margin-top: 20px; /* Mendorong elemen ini ke dasar */
+  border-bottom: 0;
+  font-size: 24px;
+}
+.total-cost-box .form-group.vocer label{
+  color: var(--green) ;
+  font-weight: bold;
+  font-size: 20px;
 }
 .total-cost-box .form-group.vocer span{
   color: var(--green) ;
@@ -176,10 +234,6 @@ body {
   
 }
 .nav-booking{
-  overflow-x: auto;
-  scrollbar-width: none; /* Mengaktifkan scroll horizontal */
-    white-space: nowrap; /* Mencegah pemisahan baris */
-    -webkit-overflow-scrolling: touch;
   background-color:var(--blue);
   height: 130px;
 }
@@ -194,15 +248,12 @@ body {
   margin: 0; /* Jarak antar gambar */
 }
 .booking-top{
-  display: flex;
-  align-items: center;
   justify-content: center;
   margin-top: 30px;
-  /* margin-left: 25%; */
+  margin-left: 25%;
  
 }
 .booking-top h2{
- /* justify-content: center; */
  font-weight:bolder;
 }
 hr {

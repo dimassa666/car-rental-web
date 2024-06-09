@@ -12,6 +12,7 @@
           <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
           <li class="nav-item"><a href="/car" class="nav-link">Cars Book</a></li>
+          <li class="nav-item"><a href="/car" class="nav-link">Cars Book</a></li>
           <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
         </div><li id="login-section"><a href="/session" id="login-button">Login</a></li>
         </ul>
