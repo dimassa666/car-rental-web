@@ -2,7 +2,31 @@
  	duration: 800,
  	easing: 'slide'
  });
-
+ document.addEventListener('DOMContentLoaded', function() {
+	const loginSection = document.getElementById('login-section');
+	const loginButton = document.getElementById('login-button');
+  
+	// Check if user is logged in
+	const isLoggedIn = false; // This should be replaced with actual login state check
+  
+	if (isLoggedIn) {
+	  const profilePicture = document.createElement('img');
+	  profilePicture.id = 'profile-picture';
+	  profilePicture.src = 'main/images/person_1.jpg'; // Replace with the actual profile picture URL
+	  loginSection.innerHTML = 'session';
+	  loginSection.appendChild(profilePicture);
+	} else {
+	  loginButton.addEventListener('click', function() {
+		// Handle login logic here
+		// After login, change to profile picture
+		const profilePicture = document.createElement('img');
+		profilePicture.id = 'profile-picture';
+		profilePicture.src = 'main/images/person_1.jpg'; // Replace with the actual profile picture URL
+		loginSection.innerHTML = '/session';
+		loginSection.appendChild(profilePicture);
+	  });
+	}
+  });
 (function($) {
 
 	"use strict";

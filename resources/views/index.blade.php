@@ -69,7 +69,7 @@
                   <div class="services w-100 text-center">
                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
                     <div class="text w-100">
-                      <h3 class="heading mb-2">Pilih Lokasi Penjemputan Anda</h3>
+                      <h3 class="heading mb-2">Tentukan Lokasi Penjemputan Anda</h3>
                     </div>
                   </div>      
                 </div>
@@ -77,7 +77,7 @@
                   <div class="services w-100 text-center">
                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-handshake"></span></div>
                     <div class="text w-100">
-                      <h3 class="heading mb-2">Pilih Penawaran Terbaik</h3>
+                      <h3 class="heading mb-2">Temukan Penawaran Terbaik</h3>
                     </div>
                   </div>      
                 </div>
@@ -85,7 +85,7 @@
                   <div class="services w-100 text-center">
                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-rent"></span></div>
                     <div class="text w-100">
-                      <h3 class="heading mb-2">Pesan Mobil Sewaan Anda</h3>
+                      <h3 class="heading mb-2">Pesan Mobil Pilihan Anda</h3>
                     </div>
                   </div>      
                 </div>
@@ -115,7 +115,7 @@
               <div class="img rounded d-flex align-items-end" style="background-image: url(main/images/car-1.jpg);">
               </div>
               <div class="text">
-                <h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
+                <h2 class="mb-0"><a href="/car-single">Mercedes Grand Eedan</a></h2>
                 <div class="d-flex mb-3">
                   <span class="cat">Cheverolet</span>
                   <p class="price ml-auto">$500 <span>/day</span></p>
@@ -183,8 +183,7 @@
           <h2 class="mb-4">Selamat Datang Di LuckyRide</h2>
 
           <p>Sejak didirikan pada tahun 2024, RentRide telah tumbuh menjadi pilihan terkemuka dalam layanan penyewaan mobil di Indonesia. Dengan layanan yang terpercaya dan berkomitmen untuk memenuhi kebutuhan pelanggan, kami telah melayani ribuan pelanggan yang puas dari berbagai latar belakang dan keperluan. Kami menyediakan beragam kendaraan berkualitas tinggi yang siap mengantarkan Anda ke destinasi Anda dengan nyaman dan aman.</p>
-          <p>Saat Anda memilih RentRide, Anda memilih partner perjalanan yang dapat diandalkan, efisien, dan berkualitas tinggi. Bersama kami, Anda akan menemukan solusi penyewaan mobil yang sesuai dengan kebutuhan Anda, sehingga Anda dapat menikmati perjalanan tanpa khawatir dan dengan penuh percaya diri.</p>
-          <p><a href="#" class="btn btn-primary py-3 px-4">cari kendaraan</a></p>
+          <p><a href="https://www.youtube.com/watch?v=BpwDFKFkpOY&ab_channel=%EB%A6%AC%ED%94%8C%EB%A0%88%EC%9D%B4LEEPLAY" class="btn btn-primary py-3 px-4">Selengkapnya</a></p>
         </div>
       </div>
     </div>

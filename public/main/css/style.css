@@ -165,12 +165,46 @@ body {
   text-decoration: none;
   font-size: 16px;
 }
-
-#rent-now-button:hover {
-  background-color: #0056b3; /* Warna biru lebih gelap saat hover */
-  color: #fff; /* Teks tetap putih saat hover */
+.total-cost-box .form-group.vocer span{
+  color: var(--green) ;
+  font-weight: bold;
+  font-size: 20px;
+}
+.nav-booking-1{
+  background-color:lightblue;
+  height: 110px;
+  
+}
+.nav-booking{
+  overflow-x: auto;
+  scrollbar-width: none; /* Mengaktifkan scroll horizontal */
+    white-space: nowrap; /* Mencegah pemisahan baris */
+    -webkit-overflow-scrolling: touch;
+  background-color:var(--blue);
+  height: 130px;
+}
+.image-container {
+  display: flex;
 }
 
+.image-container img {
+  height: 130px;
+  width: auto;
+  /* max-height: 100%; Menyesuaikan tinggi gambar dengan tinggi section */
+  margin: 0; /* Jarak antar gambar */
+}
+.booking-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  /* margin-left: 25%; */
+ 
+}
+.booking-top h2{
+ /* justify-content: center; */
+ font-weight:bolder;
+}
 hr {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
