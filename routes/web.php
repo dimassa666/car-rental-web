@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardKendaraanController;
 use App\Http\Controllers\DashboardPesananController;
 use App\Http\Controllers\DashboardVoucherController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,14 +18,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// redirect ke tampilan utama
+Route::get('/home', function () { return redirect('/'); });
 
-Route::get('/', function () {
-    return view('index');
-});
+// untuk tampilan utama atau pelanggan
+Route::get('/',[HomepageController::class, 'index']);
 
-Route::get('/home', function () {
-    return redirect('/');
-});
+
 
 // MENGENAI SESSION (LOGIN DAN LOGOUT)
 // jika sudah login maka tidak boleh akses halaman untuk login, sehingga akan meredirect ke /home
@@ -50,3 +50,8 @@ Route::resource('/dashboard/kendaraan', DashboardKendaraanController::class)->mi
 Route::get('/dashboard/pesanan',[DashboardPesananController::class, 'index'])->middleware('isKaryawan');
 Route::get('/dashboard/pesanan/{pesanan}',[DashboardPesananController::class, 'show'])->middleware('isKaryawan');
 Route::put('/dashboard/pembayaran/{id}', [DashboardPesananController::class, 'update'])->name('dashboard.pembayaran.update');
+
+
+
+
+
