@@ -51,6 +51,20 @@
 </div>
     <div class="container mt-5 container-flex">
         <div class="left-column">
+            <section class="mobil-detail shadow p-3 mb-4 bg-white">
+                <h2>Detail Mobil</h2>
+                <div class="car-container">
+                    <div class="car-img">
+                        <img src="main/images/car-1.jpg" alt="Mercedes Grand Sedan">
+                    </div>
+                    <div class="car-info">
+                        <p>Mercedes Grand Sedan</p>
+                    </div>
+                </div>
+            </section>
+            
+            
+            
             <div class="rental-form-box shadow p-3 mb-4 bg-white">
                 <form oninput="calculateTotalCost()">
                                         <!-- Booking Details -->

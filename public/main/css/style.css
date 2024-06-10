@@ -96,6 +96,46 @@ body {
   flex: 0 0 300px;
   margin-left: 20px;
 }
+.mobil-detail {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.mobil-detail h2 {
+  margin-bottom: 20px;
+  /* font-size: 1.5rem; */
+  font-weight: bold;
+}
+
+.car-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.car-img img {
+  border-radius: 15px;
+  height: 150px; /* Sesuai ukuran yang Anda tentukan */
+  width: auto;
+}
+
+.car-info {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.car-info p {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+
+
+
 
 .rental-form-box {
   color: var(--dark);

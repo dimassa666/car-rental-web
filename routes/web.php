@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardKendaraanController;
 use App\Http\Controllers\DashboardPesananController;
 use App\Http\Controllers\DashboardVoucherController;
 use App\Http\Controllers\SessionController;
+use App\Models\Kendaraan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,8 +36,10 @@ Route::get('/car', function () {
     return view('car');
 });
 Route::get('/booking', function () {
-    return view('booking');
+    $kendaraan = Kendaraan::take(1)->get();
+    return view('booking',['Kendaraan'=> $kendaraan]);
 });
+
 Route::get('/car-single', function () {
     return view('car-single');
 });
