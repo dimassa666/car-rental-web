@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p><a href="#" class="btn btn-primary py-3 px-4">Pesan Mobil Terbaik Anda</a></p>
+                                <p><a href="/kendaraan" class="btn btn-primary py-3 px-4">Pesan Mobil Terbaik Anda</a></p>
                             </div>
                         </div>
                     </div>

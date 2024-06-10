@@ -3,6 +3,10 @@
 @section('konten')
     <x-mainnavbar></x-mainnavbar>
 
+    <div
+        style="background-color: #FF3CAC; background-image: linear-gradient(225deg, #784BA0 50%, #2B86C5 100%); height: 72px;">
+    </div>
+
     <section class="ftco-section bg-light">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
@@ -13,24 +17,43 @@
             <div class="row">
                 @foreach ($pesanan as $item)
                     <div class="col-md-6 col-lg-4 ftco-animate">
-                        <div class="card mb-4 shadow-sm">
+                        <div class="card mb-4 shadow border-primary">
+                            <div class="card-body text-xs font-weight-bold text-primary text-uppercase text-center">
+                                Pesanan ID: P{{ $item->pesanan_id }}
+                            </div>
                             <img src="{{ asset('storage/' . $item->kendaraan->foto) }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title text-uppercase">{{ $item->kendaraan->merk }}
-                                    {{ $item->kendaraan->tipe }} {{ $item->kendaraan->tahun_produksi }}
-                                    {{ $item->tipe . ' ' . $item->tahun_produksi . ' ' . ($item->transmisi === 'otomatis' ? 'A/T' : 'M/T') }}
-                                </h5>
-                                {{-- <p class="card-text">Total Biaya:
-                                    Rp{{ number_format($item->detail_pesanan->total_pembayaran, 0, ',', '.') }}</p> --}}
-                                <p class="card-text">Pesanan ID: P{{ $item->pesanan_id }}</p>
-                                <p class="card-text">Waktu Mulai: {{ $item->waktu_mulai }}</p>
-                                <p class="card-text">Waktu Selesai: {{ $item->waktu_selesai }}</p>
-                                <p class="card-text">Status: {{ $item->status_pesanan }}</p>
-                                <p class="card-text">Jumlah Hari: {{ $item->jumlah_hari }}</p>
+                            <div class="card-body text-xs text-gray-800">
+                                <h3 class="mb-1">
+                                    <a href="/kendaraan/{{ $item->kendaraan->kendaraan_id }}"
+                                        class="text-uppercase text-dark font-weight-semibold">
+                                        {{ $item->kendaraan->tipe . ' ' . $item->kendaraan->tahun_produksi }}
+                                    </a>
+                                </h3>
+                                <p class="mb-0"><strong>Waktu Mulai:</strong>
+                                    {{ \Carbon\Carbon::parse($item->waktu_mulai)->locale('id')->isoFormat('D MMMM Y | HH:mm') }}
+                                </p>
+                                <p class="mb-0"><strong>Waktu Selesai:</strong>
+                                    {{ \Carbon\Carbon::parse($item->waktu_selesai)->locale('id')->isoFormat('D MMMM Y | HH:mm') }}
+                                </p>
+                                <p class="mb-0 text-capitalize"><strong>Status:</strong> {{ $item->status_pesanan }}</p>
+                                <p class="mb-0 card-text"><strong>Total Biaya:</strong>
+                                    <span class="text-primary font-weight-bold">
+                                        Rp{{ number_format($item->detailPesanan->total_pembayaran, 0, ',', '.') }}
+                                    </span>
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <a href="/pesanan/{{ $item->pesanan_id }}" class="btn btn-primary">Cek Pesanan</a>
+                                    @if ($item->status_pesanan == 'dibuat')
+                                        <a href="/pesanan/bayar/{{ $item->pesanan_id }}" class="btn btn-success">Bayar
+                                            Sekarang</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </section>

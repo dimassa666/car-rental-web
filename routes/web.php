@@ -31,6 +31,9 @@ Route::get('/kendaraan/{id}', [HomepageController::class, 'showKendaraan']);
 // untuk pesanan
 Route::resource('/pesanan', PesananController::class)->middleware('auth');
 Route::resource('pesanan', PesananController::class)->except(['destroy']);
+Route::get('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'showPembayaran'])->name('pesanan.bayar');
+Route::post('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'submitPembayaran'])->name('pesanan.submitPembayaran');
+
 
 
 
