@@ -38,7 +38,7 @@
                             berkualitas tinggi. Bersama kami, Anda akan menemukan solusi penyewaan mobil yang sesuai dengan
                             kebutuhan Anda, sehingga Anda dapat menikmati perjalanan tanpa khawatir dan dengan penuh percaya
                             diri.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-4">Temukan Kendaraan</a></p>
+                        <p><a href="/kendaraan" class="btn btn-primary py-3 px-4">Temukan Kendaraan</a></p>
                     </div>
                 </div>
             </div>

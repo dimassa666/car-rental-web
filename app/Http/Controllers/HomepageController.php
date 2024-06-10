@@ -82,7 +82,10 @@ class HomepageController extends Controller
 
     public function showKendaraan($id)
     {
+        $relatedCars = Kendaraan::orderBy('created_at', 'desc')->take(3)->get();        
+
+
         $kendaraan = Kendaraan::findOrFail($id);
-        return view('kendaraan.show', compact('kendaraan'));
+        return view('kendaraan.show', compact('kendaraan', 'relatedCars'));
     }
 }
