@@ -23,6 +23,10 @@ Route::get('/home', function () { return redirect('/'); });
 
 // untuk tampilan utama atau pelanggan
 Route::get('/',[HomepageController::class, 'index']);
+Route::get('/about', [HomepageController::class, 'about']);
+Route::get('/kontak', [HomepageController::class, 'kontak']);
+Route::get('/kendaraan', [HomepageController::class, 'kendaraan'])->name('kendaraan');
+Route::get('/kendaraan/{id}', [HomepageController::class, 'showKendaraan']);
 
 
 
