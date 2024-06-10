@@ -82,10 +82,27 @@ class HomepageController extends Controller
 
     public function showKendaraan($id)
     {
-        $relatedCars = Kendaraan::orderBy('created_at', 'desc')->take(3)->get();        
-
-
         $kendaraan = Kendaraan::findOrFail($id);
+
+        // ambil kendaraan dengan jenis dan harga setara
+        $relatedCars = Kendaraan::where('kendaraan_id', '!=', $id)
+            ->where('jenis', $kendaraan->jenis)
+            ->orderByRaw('ABS(harga_sewa - ?)', [$kendaraan->harga_sewa])
+            ->take(3)
+            ->get();
+
+        // jika ternyata kurang dari 3 kendaraan
+        if ($relatedCars->count() < 3) {
+            $additionalCars = Kendaraan::where('kendaraan_id', '!=', $id)
+                ->where('jenis', '!=', $kendaraan->jenis)
+                ->orderByRaw('ABS(harga_sewa - ?)', [$kendaraan->harga_sewa])
+                ->take(3 - $relatedCars->count())
+                ->get();
+
+            // gabungkan hasil
+            $relatedCars = $relatedCars->merge($additionalCars);
+        }
+
         return view('kendaraan.show', compact('kendaraan', 'relatedCars'));
     }
 }

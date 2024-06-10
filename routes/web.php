@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardKendaraanController;
 use App\Http\Controllers\DashboardPesananController;
 use App\Http\Controllers\DashboardVoucherController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,11 @@ Route::get('/about', [HomepageController::class, 'about']);
 Route::get('/kontak', [HomepageController::class, 'kontak']);
 Route::get('/kendaraan', [HomepageController::class, 'kendaraan'])->name('kendaraan');
 Route::get('/kendaraan/{id}', [HomepageController::class, 'showKendaraan']);
+// untuk pesanan
+Route::resource('/pesanan', PesananController::class)->middleware('auth');
+Route::resource('pesanan', PesananController::class)->except(['destroy']);
+
+
 
 
 

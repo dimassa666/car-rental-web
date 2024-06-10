@@ -24,6 +24,10 @@ class User extends Authenticatable
         'no_telepon',
         'role'
     ];
+    public function pesanan()
+    {   
+        return $this->hasMany(Pesanan::class, 'pelanggan_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,4 +47,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }
