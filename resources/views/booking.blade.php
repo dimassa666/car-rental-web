@@ -136,8 +136,8 @@
                 <button type="button" class="checkout-btn btn-primary" onclick="window.location.href='index.html'">Pesan Sekarang</button>            </div>
         
         </div>
-        <div class="right-column">
-            <div class="total-cost-box  ">
+        {{-- <div class="right-column"> --}}
+            {{-- <div class="total-cost-box  ">
                 <h2>Rincian Pesanan</h2>
                  <!-- Subtotal dan Total Pembayaran -->
         <div class="cost-details">
@@ -178,7 +178,7 @@
             <div class="button-wrap">
                 <button type="button" class="checkout-btn btn-primary" onclick="window.location.href='index.html'">Pesan Sekarang</button>            </div>
         
-        </div>
+        </div> --}}
         <div class="right-column">
             <div class="total-cost-box  ">
                 <h2>Rincian Pesanan</h2>
@@ -211,11 +211,8 @@
         </div>
             </div>
             </div>
-        </div>
-    </div>
 
+    
+</div>
     <x-mainfooter></x-mainfooter>
-
-    <x-mainfooter></x-mainfooter>
-
 @endsection
