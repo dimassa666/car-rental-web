@@ -106,7 +106,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-12 text-center">
-                    <a href="/pesanan/{{ $kendaraan->kendaraan_id }}" class="btn btn-primary btn-lg">
+                    <a href="/pesanan/buat/{{ $kendaraan->kendaraan_id }}" class="btn btn-primary btn-lg">
                         <h3 class="text-white mx-1 my-1">
                             PESAN SEKARANG!
                         </h3>

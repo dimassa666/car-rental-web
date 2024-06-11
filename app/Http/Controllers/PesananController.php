@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailPesanan;
+use App\Models\Kendaraan;
 use App\Models\Pesanan;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 class PesananController extends Controller
@@ -29,25 +31,84 @@ class PesananController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($kendaraan_id)
     {
-        //
+        $kendaraan = Kendaraan::find($kendaraan_id);
+        return view('pesanan.create', compact('kendaraan'));
+    }
+
+    public function checkVoucher(Request $request)
+    {
+        $voucherCode = $request->input('voucher');
+        $voucher = Voucher::where('kode_voucher', $voucherCode)->first();
+
+        if ($voucher) {
+            return response()->json(['valid' => true, 'value' => $voucher->nilai_diskon]);
+        } else {
+            return response()->json(['valid' => false, 'value' => 0]);
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     // Validasi dan simpan data booking
+    //         $data = $request->validate([
+    //             'start_date' => 'required|date',
+    //             'end_date' => 'required|date|after_or_equal:start_date',
+    //             'start_time' => 'required',
+    //             'tipe_antar' => 'required',
+    //             'alamat_antar' => 'nullable|string',
+    //             'tipe_jemput' => 'required',
+    //             'alamat_jemput' => 'nullable|string',
+    //             'sopir' => 'required',
+    //             'voucher' => 'nullable|string'
+    //         ]);
+
+    //         // Hitung total biaya
+    //         $kendaraan = Kendaraan::find($request->input('kendaraan_id'));
+    //         $days = (strtotime($request->input('end_date')) - strtotime($request->input('start_date'))) / (60 * 60 * 24) + 1;
+    //         $vehicleSubtotal = $days * $kendaraan->harga_sewa;
+    //         $deliveryPickupSubtotal = ($request->input('tipe_antar') == 'toko' ? 50000 : 0) + ($request->input('tipe_jemput') == 'toko' ? 50000 : 0);
+    //         $driverSubtotal = $request->input('sopir') == 'ya' ? 100000 * $days : 0;
+    //         $total = $vehicleSubtotal + $deliveryPickupSubtotal + $driverSubtotal;
+
+    //         // Cek dan terapkan voucher
+    //         $voucher = Voucher::where('kode_voucher', $request->input('voucher'))->first();
+    //         $discount = 0;
+    //         if ($voucher) {
+    //             $discount = $total * ($voucher->nilai_diskon / 100);
+    //         }
+    //         $finalTotal = $total - $discount;
+
+    //         // Simpan data booking
+    //         $booking = Booking::create([
+    //             'kendaraan_id' => $kendaraan->id,
+    //             'user_id' => auth()->id(),
+    //             'start_date' => $request->input('start_date'),
+    //             'end_date' => $request->input('end_date'),
+    //             'start_time' => $request->input('start_time'),
+    //             'tipe_antar' => $request->input('tipe_antar'),
+    //             'alamat_antar' => $request->input('alamat_antar'),
+    //             'tipe_jemput' => $request->input('tipe_jemput'),
+    //             'alamat_jemput' => $request->input('alamat_jemput'),
+    //             'sopir' => $request->input('sopir'),
+    //             'voucher' => $request->input('voucher'),
+    //             'total_biaya' => $finalTotal,
+    //         ]);
+
+    //         return redirect()->route('booking.success', ['booking' => $booking->id]);
+    //     }
+    // }
 
     /**
      * Display the specified resource.
      */
     public function show(Pesanan $pesanan)
     {
-        //
+        return view('pesanan/show');
     }
 
     /**

@@ -31,9 +31,11 @@ Route::get('/kendaraan/{id}', [HomepageController::class, 'showKendaraan']);
 // untuk pesanan
 Route::resource('/pesanan', PesananController::class)->middleware('auth');
 Route::resource('pesanan', PesananController::class)->except(['destroy']);
+Route::get('/pesanan/buat/{kendaraan_id}', [PesananController::class, 'create'])->name('pesanan.create');
+Route::post('/pesanan', [PesananController::class, 'store'])->name('pesanan.store');
 Route::get('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'showPembayaran'])->name('pesanan.bayar');
 Route::post('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'submitPembayaran'])->name('pesanan.submitPembayaran');
-
+Route::post('/api/check-voucher', [PesananController::class, 'checkVoucher']);
 
 
 
