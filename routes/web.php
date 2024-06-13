@@ -22,29 +22,34 @@ use Illuminate\Support\Facades\Route;
 // redirect ke tampilan utama
 Route::get('/home', function () { return redirect('/'); });
 
-// untuk tampilan utama atau pelanggan
+
+// HALAMAN UTAMA ATAU HOMEPAGE
 Route::get('/',[HomepageController::class, 'index']);
 Route::get('/about', [HomepageController::class, 'about']);
 Route::get('/kontak', [HomepageController::class, 'kontak']);
 Route::get('/kendaraan', [HomepageController::class, 'kendaraan'])->name('kendaraan');
 Route::get('/kendaraan/{id}', [HomepageController::class, 'showKendaraan']);
-// untuk pesanan
-Route::resource('/pesanan', PesananController::class)->middleware('auth');
-Route::resource('pesanan', PesananController::class)->except(['destroy']);
-Route::get('/pesanan/buat/{kendaraan_id}', [PesananController::class, 'create'])->name('pesanan.create');
-Route::post('/pesanan', [PesananController::class, 'store'])->name('pesanan.store');
-Route::get('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'showPembayaran'])->name('pesanan.bayar');
-Route::post('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'submitPembayaran'])->name('pesanan.submitPembayaran');
-Route::post('/api/check-voucher', [PesananController::class, 'checkVoucher']);
+// AKHIR HALAMAN UTAMA ATAU HOMEPAGE
 
 
+// UNTUK PESANAN
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/pesanan', PesananController::class)->except(['destroy']);
+    Route::get('/pesanan/buat/{kendaraan_id}', [PesananController::class, 'create'])->name('pesanan.create');
+    Route::post('/pesanan', [PesananController::class, 'store'])->name('pesanan.store');
+    Route::get('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'showPembayaran'])->name('pesanan.bayar');
+    Route::post('/pesanan/bayar/{pesanan_id}', [PesananController::class, 'submitPembayaran'])->name('pesanan.submitPembayaran');
+    Route::post('/submit-booking', [PesananController::class, 'store'])->name('booking.submit');
+    Route::post('/api/check-voucher', [PesananController::class, 'checkVoucher']);
+});
+// AKHIR UNTUK PESANAN
 
 
 
 // MENGENAI SESSION (LOGIN DAN LOGOUT)
-// jika sudah login maka tidak boleh akses halaman untuk login, sehingga akan meredirect ke /home
+    // jika sudah login maka tidak boleh akses halaman untuk login, sehingga akan meredirect ke /home
 Route::get('/session',[SessionController::class, 'index'])->name('login')->middleware('guest');
-// hanya tamu dan karyawan untuk membuat akun khusus karyawan lainnya
+    // hanya tamu dan karyawan untuk membuat akun khusus karyawan lainnya
 Route::get('/session/register',[SessionController::class, 'register'])->middleware('guestOrKaryawan'); 
 
 Route::post('/session/login',[SessionController::class, 'login']);
@@ -54,17 +59,18 @@ Route::get('/logout',[SessionController::class, 'logout'])->middleware('auth');
 // AKHIR SESSION
 
 
-Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth', 'isKaryawan');
-
-
-// dashboard voucher
+// UNTUK DASHBOARD KARYAWAN
+Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('isKaryawan');
+    // dashboard/voucher
 Route::resource('/dashboard/voucher', DashboardVoucherController::class)->middleware('isKaryawan');
-// dashboard kendaraan
+    // dashboard/kendaraan
 Route::resource('/dashboard/kendaraan', DashboardKendaraanController::class)->middleware('isKaryawan');
-// dashb pesanan
+    // dashborad/pesanan
 Route::get('/dashboard/pesanan',[DashboardPesananController::class, 'index'])->middleware('isKaryawan');
 Route::get('/dashboard/pesanan/{pesanan}',[DashboardPesananController::class, 'show'])->middleware('isKaryawan');
 Route::put('/dashboard/pembayaran/{id}', [DashboardPesananController::class, 'update'])->name('dashboard.pembayaran.update');
+// AKHIR UNTUK DASHBOARD KARYAWAN
+
 
 
 

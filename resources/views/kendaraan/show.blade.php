@@ -141,10 +141,12 @@
                                         <span>/hari</span>
                                     </p>
                                 </div>
-                                <p class="d-flex mb-0 d-block"><a href="/pesanan/{{ $car->kendaraan_id }}"
-                                        class="btn btn-primary py-2 mr-1">Pesan!</a> <a
-                                        href="/kendaraan/{{ $car->kendaraan_id }}"
-                                        class="btn btn-secondary py-2 ml-1">Detail</a></p>
+                                <p class="d-flex mb-0 d-block">
+                                    <a href="/kendaraan/{{ $car->kendaraan_id }}"
+                                        class="btn btn-secondary py-2 mr-1">Detail</a>
+                                    <a href="/pesanan/buat/{{ $car->kendaraan_id }}"
+                                        class="btn btn-primary py-2 ml-1">Pesan</a>
+                                </p>
                             </div>
                         </div>
                     </div>

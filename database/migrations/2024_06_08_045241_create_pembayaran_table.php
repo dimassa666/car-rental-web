@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pesanan_id');
             $table->unsignedBigInteger('pelanggan_id');
             $table->unsignedBigInteger('karyawan_id')->nullable();
+            $table->string('foto_pembayaran')->nullable();
             $table->timestamps();
 
             $table->foreign('pesanan_id')->references('pesanan_id')->on('pesanan');

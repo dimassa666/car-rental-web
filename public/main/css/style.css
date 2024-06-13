@@ -11712,7 +11712,8 @@ h5,
     right: 0;
     bottom: 0;
     content: "";
-    background: #01d28e;
+    /* background: #01d28e; */
+    background: #1089ff;
     z-index: -2;
     width: 63%;
 }
@@ -12945,56 +12946,49 @@ textarea.form-control {
 }
 
 /* TAMBAHAN */
-/*booking section */
+
+/* Flex container */
 .container-flex {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
 }
 
 .left-column {
     flex: 1;
+    min-width: 300px;
 }
 
 .right-column {
     flex: 0 0 300px;
     margin-left: 20px;
 }
+
 .mobil-detail {
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 25px;
     max-width: 800px;
-    margin: 20px auto;
-}
-
-.mobil-detail h2 {
-    margin-bottom: 20px;
-    /* font-size: 1.5rem; */
-    font-weight: bold;
+    margin: 0px auto;
 }
 
 .car-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .car-img img {
     border-radius: 15px;
-    height: 150px;
-    width: auto;
+    max-height: 150px; /* Atur tinggi maksimum gambar */
+    width: 100%; /* Agar gambar mengisi lebar parent container */
+    object-fit: cover; /* Untuk mempertahankan aspek ratio */
 }
 
 .car-info {
-    flex: 1;
     padding-left: 20px;
 }
 
-.car-info p {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
 .rental-form-box {
     color: var(--dark);
     background-color: #fff;
@@ -13002,12 +12996,10 @@ textarea.form-control {
     border-radius: 25px;
     box-shadow: 0 4px 20px rgba(20, 0, 0, 0.1);
 }
-.rental-form-box h2 {
-    font-weight: bolder;
-}
+
 .rental-form-box label {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .important-info {
@@ -13015,11 +13007,6 @@ textarea.form-control {
     padding: 20px;
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.important-info h2 {
-    font-weight: bolder;
-    color: #343a40;
 }
 
 .important-info ul {
@@ -13031,6 +13018,7 @@ textarea.form-control {
     color: var(--gray);
     margin-bottom: 10px;
 }
+
 .button-wrap {
     display: flex;
     background-color: #fff;
@@ -13042,6 +13030,7 @@ textarea.form-control {
     border-radius: 20px;
     box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.1);
 }
+
 .checkout-btn {
     padding: 12px 24px;
     font-size: 20px;
@@ -13059,6 +13048,8 @@ textarea.form-control {
     top: 100px;
     margin-bottom: 20px;
     border-radius: 25px;
+    /* width: 100%;
+    max-width: 400px; */
     width: 400px;
     height: auto;
     padding: 20px;
@@ -13068,12 +13059,14 @@ textarea.form-control {
     border-bottom: 6px solid var(--blue);
     box-shadow: 0 4px 12px rgba(4, 0, 0, 0.1);
 }
+
 .total-cost-box h2 {
     color: var(--blue);
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bolder;
     margin-bottom: 20px;
 }
+
 .total-cost-box .cost-details {
     display: flex;
     flex-direction: column;
@@ -13091,38 +13084,46 @@ textarea.form-control {
 .total-cost-box .form-group:not(:nth-child(2)) {
     border-bottom: 2.5px solid #ccc;
 }
-.total-cost-box .form-group label {
+
+.total-cost-box .form-group.label {
     margin-right: 10px;
 }
+
 .total-cost-box .form-group.div {
     font-size: 18px;
     font-weight: 500;
 }
+
 .total-cost-box .form-group span {
     color: var(--dark);
     text-align: right;
 }
+
 .total-cost-box .form-group.total-payment {
     font-weight: bolder;
     margin-top: 20px;
     border-bottom: 0;
-    font-size: 24px;
+    font-size: 20px;
 }
+
 .total-cost-box .form-group.vocer label {
     color: var(--green);
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 18px;
 }
+
 .total-cost-box .form-group.vocer span {
     color: var(--green);
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 18px;
 }
+
 .nav-booking-1 {
     width: 100%;
     background-color: lightblue;
     height: 125px;
 }
+
 .nav-booking {
     background-color: var(--blue);
     height: 250px;
@@ -13136,6 +13137,7 @@ textarea.form-control {
 .nav-booking::-webkit-scrollbar {
     display: none; /* Untuk Chrome, Safari, dan Opera */
 }
+
 .image-container {
     display: flex;
     width: max-content;
@@ -13146,11 +13148,52 @@ textarea.form-control {
     width: auto;
     margin: 0;
 }
+
 .booking-top {
     justify-content: center;
-    margin-top: 30px;
-    margin-left: 25%;
+    /* margin-top: 30px; */
+    margin: 30px 25% 0;
 }
+
 .booking-top h2 {
     font-weight: bolder;
+}
+
+@media (max-width: 768px) {
+    .total-cost-box {
+        width: 100%;
+    }
+    .booking-top {
+        margin: 30px 5% 0;
+    }
+
+    .car-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car-info {
+        margin-top: 10px; /* Atur margin top agar terpisah dari gambar */
+    }
+
+    .container-flex {
+        flex-direction: column;
+    }
+
+    .right-column {
+        margin-left: 0;
+        margin-top: 20px;
+        order: 2;
+    }
+
+    .checkout-btn {
+        order: 1;
+    }
+}
+
+.img-equal-height {
+    height: 200px; /* Atur tinggi yang diinginkan */
+    object-fit: cover; /* Menjaga aspek rasio dan memotong bagian gambar yang melebihi */
+    width: 100%; /* Pastikan gambar mengambil lebar penuh dari kontainernya */
 }

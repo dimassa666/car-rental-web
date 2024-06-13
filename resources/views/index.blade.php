@@ -14,15 +14,6 @@
                         <p style="font-size: 18px;">"Temukan Mobilitas yang Tak Tertandingi dengan Penawaran Terbaik Kami!
                             <br>Pesan Sekarang dan Nikmati Perjalanan Anda dengan Kendaraan Impian Anda."
                         </p>
-                        <a href="#"
-                            class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
-                            <div class="icon d-flex align-items-center justify-content-center">
-                                <span class="ion-ios-play"></span>
-                            </div>
-                            <div class="heading-title ml-5">
-                                <span>Langkah Mudah Untuk Menyewa Mobil Impian Anda</span>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -137,10 +128,10 @@
                                             </p>
                                         </div>
                                         <p class="d-flex mb-0 d-block">
-                                            <a href="/pesanan/{{ $item->kendaraan_id }}"
-                                                class="btn btn-primary py-2 mr-1">Pesan!</a>
                                             <a href="/kendaraan/{{ $item->kendaraan_id }}"
-                                                class="btn btn-secondary py-2 ml-1">Detail</a>
+                                                class="btn btn-secondary py-2 mr-1">Detail</a>
+                                            <a href="/pesanan/buat/{{ $item->kendaraan_id }}"
+                                                class="btn btn-primary py-2 ml-1">Pesan</a>
                                         </p>
                                     </div>
                                 </div>
@@ -168,7 +159,7 @@
                             kebutuhan pelanggan, kami telah melayani ribuan pelanggan yang puas dari berbagai latar belakang
                             dan keperluan. Kami menyediakan beragam kendaraan berkualitas tinggi yang siap mengantarkan Anda
                             ke destinasi Anda dengan nyaman dan aman.</p>
-                        <p><a href="/about" class="btn btn-primary py-3 px-4">Selengkapnya</a></p>
+                        <p><a href="/about" class="btn btn-secondary py-3 px-4">Selengkapnya</a></p>
                     </div>
                 </div>
             </div>
@@ -191,11 +182,11 @@
                                 <div class="user-img mb-2" style="background-image: url(main/images/person_1.jpg)">
                                 </div>
                                 <div class="text pt-4">
-                                    <p class="mb-4">"Saya sangat puas dengan layanan LuckyRide. Armada mobil yang mereka
+                                    <p class="mb-4">"Saya sangat puas dengan layanan LuckyRental. Armada mobil yang
+                                        mereka
                                         miliki sangat lengkap dan dalam kondisi prima. Proses pemesanan juga sangat mudah
                                         dan transparan. Sangat direkomendasikan!".</p>
-                                    <p class="name">Roger Scott</p>
-                                    <span class="position">Marketing Manager</span>
+                                    <p class="name">Robin Venorta</p>
                                 </div>
                             </div>
                         </div>
@@ -204,12 +195,12 @@
                                 <div class="user-img mb-2" style="background-image: url(main/images/person_2.jpg)">
                                 </div>
                                 <div class="text pt-4">
-                                    <p class="mb-4"> "LuckyRide memberikan pengalaman penyewaan mobil yang menyenangkan.
+                                    <p class="mb-4"> "LuckyRental memberikan pengalaman penyewaan mobil yang
+                                        menyenangkan.
                                         Harga yang ditawarkan sangat kompetitif, dan staf mereka sangat ramah dan membantu.
                                         Mobil yang saya sewa dalam kondisi bersih dan nyaman. Saya pasti akan menggunakan
                                         layanan mereka lagi di masa mendatang."</p>
-                                    <p class="name">Roger Scott</p>
-                                    <span class="position">Interface Designer</span>
+                                    <p class="name">Jenni Aurellia</p>
                                 </div>
                             </div>
                         </div>
@@ -219,39 +210,25 @@
                                 </div>
                                 <div class="text pt-4">
                                     <p class="mb-4">"Saya baru pertama kali menggunakan layanan penyewaan mobil, dan saya
-                                        sangat senang dengan LuckyRide. Prosesnya cepat dan tanpa hambatan. Mobil yang saya
+                                        sangat senang dengan LuckyRental. Prosesnya cepat dan tanpa hambatan. Mobil yang
+                                        saya
                                         sewa dalam kondisi prima dan pengembalian juga sangat mudah. Terima kasih banyak!"
                                     </p>
-                                    <p class="name">Roger Scott</p>
-                                    <span class="position">UI Designer</span>
+                                    <p class="name">Alexander Nathanael</p>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="testimony-wrap rounded text-center py-4 pb-5">
-                                <div class="user-img mb-2" style="background-image: url(main/images/person_1.jpg)">
+                                <div class="user-img mb-2" style="background-image: url(main/images/person_4.jpg)">
                                 </div>
                                 <div class="text pt-4">
-                                    <p class="mb-4">"Pengalaman saya menggunakan RentRide sangat memuaskan. Staf mereka
+                                    <p class="mb-4">"Pengalaman saya menggunakan LuckyRental sangat memuaskan. Staf
+                                        mereka
                                         sangat profesional dan membantu, dan armada mobil yang mereka miliki dalam kondisi
                                         prima. Proses pengembalian juga sangat cepat dan mudah. Saya akan merekomendasikan
-                                        RentRide kepada teman dan keluarga saya."</p>
-                                    <p class="name">Roger Scott</p>
-                                    <span class="position">Web Developer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap rounded text-center py-4 pb-5">
-                                <div class="user-img mb-2" style="background-image: url(main/images/person_1.jpg)">
-                                </div>
-                                <div class="text pt-4">
-                                    <p class="mb-4">"LuckyRide memberikan layanan yang sangat baik. Mereka responsif
-                                        terhadap pertanyaan saya sebelum proses pemesanan, dan mobil yang saya sewa dalam
-                                        kondisi yang sangat baik. Saya merasa aman dan nyaman selama perjalanan saya. Sangat
-                                        direkomendasikan untuk semua orang yang membutuhkan penyewaan mobil yang andal."</p>
-                                    <p class="name">Roger Scott</p>
-                                    <span class="position">System Analyst</span>
+                                        LuckyRental kepada teman dan keluarga saya."</p>
+                                    <p class="name">Piter Bourgh</p>
                                 </div>
                             </div>
                         </div>

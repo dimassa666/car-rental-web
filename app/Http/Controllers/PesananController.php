@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailPesanan;
 use App\Models\Kendaraan;
+use App\Models\LepasKunci;
+use App\Models\Pembayaran;
 use App\Models\Pesanan;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PesananController extends Controller
 {
@@ -17,7 +20,6 @@ class PesananController extends Controller
     {   
         if (auth()->check()) {
             $userId = auth()->id();
-            // eager loading relasi `kendaraan`, `detailPesanan`, dan `pembayaran`
             $pesanan = Pesanan::with(['kendaraan', 'detailPesanan', 'pembayaran'])
                               ->where('pelanggan_id', $userId)
                               ->latest()
@@ -32,9 +34,26 @@ class PesananController extends Controller
      * Show the form for creating a new resource.
      */
     public function create($kendaraan_id)
-    {
+    {   
         $kendaraan = Kendaraan::find($kendaraan_id);
-        return view('pesanan.create', compact('kendaraan'));
+
+        $pesanan = DB::table('pesanan')
+            ->where('kendaraan_id', $kendaraan_id)
+            ->whereIn('status_pesanan', ['diterima', 'dicek', 'dibuat'])
+            ->get();
+
+        $unavailableDates = [];
+        foreach ($pesanan as $order) {
+            $startDate = strtotime($order->waktu_mulai);
+            $endDate = strtotime($order->waktu_selesai);
+
+            // Tambahkan semua tanggal dalam rentang start_date hingga end_date ke array
+            for ($date = $startDate; $date <= $endDate; $date = strtotime('+1 day', $date)) {
+                $unavailableDates[] = date('Y-m-d', $date);
+            }
+        }
+
+        return view('pesanan.create', compact('kendaraan', 'unavailableDates'));
     }
 
     public function checkVoucher(Request $request)
@@ -49,66 +68,129 @@ class PesananController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     // Validasi dan simpan data booking
-    //         $data = $request->validate([
-    //             'start_date' => 'required|date',
-    //             'end_date' => 'required|date|after_or_equal:start_date',
-    //             'start_time' => 'required',
-    //             'tipe_antar' => 'required',
-    //             'alamat_antar' => 'nullable|string',
-    //             'tipe_jemput' => 'required',
-    //             'alamat_jemput' => 'nullable|string',
-    //             'sopir' => 'required',
-    //             'voucher' => 'nullable|string'
-    //         ]);
+    public function store(Request $request)
+    {   
+        // return dd($request);
 
-    //         // Hitung total biaya
-    //         $kendaraan = Kendaraan::find($request->input('kendaraan_id'));
-    //         $days = (strtotime($request->input('end_date')) - strtotime($request->input('start_date'))) / (60 * 60 * 24) + 1;
-    //         $vehicleSubtotal = $days * $kendaraan->harga_sewa;
-    //         $deliveryPickupSubtotal = ($request->input('tipe_antar') == 'toko' ? 50000 : 0) + ($request->input('tipe_jemput') == 'toko' ? 50000 : 0);
-    //         $driverSubtotal = $request->input('sopir') == 'ya' ? 100000 * $days : 0;
-    //         $total = $vehicleSubtotal + $deliveryPickupSubtotal + $driverSubtotal;
+        $request->validate([
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'required|date|after:start_date',
+            'start_time' => 'required',
+            'delivery' => 'nullable',
+            'delivery_address_input' => 'required_if:delivery,on|nullable|string',
+            'pickup' => 'nullable',
+            'pickup_address_input' => 'required_if:pickup,on|nullable|string',
+            'driver' => 'nullable',
+            'metode_pembayaran' => 'required',
+            'voucher' => 'nullable|string',
+        ]);
 
-    //         // Cek dan terapkan voucher
-    //         $voucher = Voucher::where('kode_voucher', $request->input('voucher'))->first();
-    //         $discount = 0;
-    //         if ($voucher) {
-    //             $discount = $total * ($voucher->nilai_diskon / 100);
-    //         }
-    //         $finalTotal = $total - $discount;
+        // hitung total biaya
+        $kendaraan = Kendaraan::find($request->input('kendaraan_id'));
+        $days = (strtotime($request->input('end_date')) - strtotime($request->input('start_date'))) / (60 * 60 * 24);
+        $vehicleSubtotal = $days * $kendaraan->harga_sewa;
+        $deliveryPickupSubtotal = ($request->input('delivery') == 'on' ? 50000 : 0) + ($request->input('pickup') == 'on' ? 50000 : 0);
+        $driverSubtotal = $request->input('driver') == 'on' ? 100000 * $days : 0;
+        $total = $vehicleSubtotal + $deliveryPickupSubtotal + $driverSubtotal;
 
-    //         // Simpan data booking
-    //         $booking = Booking::create([
-    //             'kendaraan_id' => $kendaraan->id,
-    //             'user_id' => auth()->id(),
-    //             'start_date' => $request->input('start_date'),
-    //             'end_date' => $request->input('end_date'),
-    //             'start_time' => $request->input('start_time'),
-    //             'tipe_antar' => $request->input('tipe_antar'),
-    //             'alamat_antar' => $request->input('alamat_antar'),
-    //             'tipe_jemput' => $request->input('tipe_jemput'),
-    //             'alamat_jemput' => $request->input('alamat_jemput'),
-    //             'sopir' => $request->input('sopir'),
-    //             'voucher' => $request->input('voucher'),
-    //             'total_biaya' => $finalTotal,
-    //         ]);
+        // cek voucher
+        $voucher = Voucher::where('kode_voucher', $request->input('voucher'))->first();
+        $discount = 0;
+        if ($voucher) {
+            $discount = $total * ($voucher->nilai_diskon / 100);
+        }
+        $finalTotal = $total - $discount;
 
-    //         return redirect()->route('booking.success', ['booking' => $booking->id]);
-    //     }
-    // }
+        // gabung tanggal dan waktu
+        $startDateTime = $request->input('start_date') . ' ' . $request->input('start_time');
+        $endDateTime = $request->input('end_date') . ' ' . $request->input('start_time');
+
+        // simpan lepas kunci
+        if( $request->input('delivery') == 'on' ){
+            $tipe_antar = 'bebas';
+            if($request->input('delivery_address_input')){
+                $lokasi_antar = $request->input('delivery_address_input');
+            }
+            else{
+                $lokasi_antar = 'Belum ditentukan';
+            }
+        } else {
+            $tipe_antar = 'toko';
+            $lokasi_antar = 'toko';
+        }
+
+        if( $request->input('pickup') == 'on' ){
+            $tipe_jemput = 'bebas';
+            if($request->input('pickup_address_input')){
+                $lokasi_jemput = $request->input('pickup_address_input');
+            }
+            else{
+                $lokasi_jemput = 'Belum ditentukan';
+            }
+        } else {
+            $tipe_jemput = 'toko';
+            $lokasi_jemput = 'toko';
+        }
+        $lepasKunci = LepasKunci::create([
+            'tipe_antar' => $tipe_antar,
+            'lokasi_antar' => $lokasi_antar,
+            'tipe_jemput' => $tipe_jemput,
+            'lokasi_jemput' => $lokasi_jemput,
+            'biaya_antar_jemput' => $deliveryPickupSubtotal,
+        ]);
+
+        $pakai_sopir = $request->input('driver') == 'on' ? 'ya' : 'tidak';
+
+        // simpan data booking
+        $pesanan = Pesanan::create([
+            'waktu_mulai' => $startDateTime,
+            'waktu_selesai' => $endDateTime,
+            'jumlah_hari' => $days,
+            'status_pesanan' => 'dibuat',
+            'sopir' => $pakai_sopir,
+            'pelanggan_id' => auth()->id(),
+            'kendaraan_id' => $kendaraan->kendaraan_id,
+            'lepas_kunci_id' => $lepasKunci->lepas_kunci_id,
+        ]);
+        
+        Pembayaran::create([
+            'metode' => $request->input('metode_pembayaran'),
+            'jumlah_sudah_dibayar' => 0,
+            'batas_waktu_pembayaran' => now()->addDay(),
+            'status_pembayaran' => 'belum',
+            'pesanan_id' => $pesanan->pesanan_id,
+            'pelanggan_id' => auth()->id(),
+        ]);
+
+        DetailPesanan::create([
+            'subtotal_kendaraan' => $vehicleSubtotal,
+            'subtotal_antar_jemput' => $deliveryPickupSubtotal,
+            'subtotal_sopir' => $driverSubtotal,
+            'potongan_voucher' => $discount,
+            'total_pembayaran' => $finalTotal,
+            'pesanan_id' => $pesanan->pesanan_id,
+        ]);
+        return redirect("/pesanan/bayar/{$pesanan->pesanan_id}");
+    }
+
+
+
+
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Pesanan $pesanan)
+    public function show($id)
     {
-        return view('pesanan/show');
+        $pesanan = Pesanan::findOrFail($id);
+
+        $kendaraan = Kendaraan::findOrFail($pesanan->kendaraan_id);
+        $lepas_kunci = LepasKunci::findOrFail($pesanan->lepas_kunci_id);
+        $detail_pesanan = DetailPesanan::where('pesanan_id', $id)->first();
+        $pembayaran = Pembayaran::where('pesanan_id', $id)->first();
+
+        return view('pesanan.show', compact('pesanan', 'kendaraan', 'lepas_kunci', 'detail_pesanan', 'pembayaran'));
     }
 
     /**
@@ -131,7 +213,8 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::find($pesanan_id);
         $detail_pesanan = $pesanan->detailPesanan;
-        return view('pesanan/pembayaran', compact('pesanan', 'detail_pesanan'));
+        $pembayaran  =$pesanan->pembayaran;
+        return view('pesanan/pembayaran', compact('pesanan', 'detail_pesanan', 'pembayaran'));
     }
 
     public function submitPembayaran(Request $request, $pesanan_id)
@@ -139,23 +222,42 @@ class PesananController extends Controller
         $request->validate([
             'jumlah_sudah_dibayar' => 'required|numeric',
             'waktu_pembayaran' => 'required|date',
-            'foto_bukti' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto_pembayaran' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        $pesanan = Pesanan::find($pesanan_id);
-        $pesanan->jumlah_sudah_dibayar = $request->jumlah_sudah_dibayar;
-        $pesanan->waktu_pembayaran = $request->waktu_pembayaran;
-
-        if ($request->hasFile('foto_bukti')) {
-            $imageName = time().'.'.$request->foto_bukti->extension();
-            $request->foto_bukti->storeAs('bukti_pembayaran', $imageName, 'public');
-            $pesanan->foto_bukti = $imageName;
+    
+        try {
+            // Mulai transaksi database
+            DB::beginTransaction();
+    
+            // Temukan pembayaran terkait
+            $pembayaran = Pembayaran::findOrFail($pesanan_id);
+            $pembayaran->jumlah_sudah_dibayar = $request->jumlah_sudah_dibayar;
+            $pembayaran->waktu_pembayaran = $request->waktu_pembayaran;
+    
+            if ($request->hasFile('foto_pembayaran')) {
+                $file = $request->file('foto_pembayaran');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $pembayaran->foto_pembayaran = $file->storeAs('imgpembayaran', $filename, 'public'); // Simpan ke direktori storage/app/public/imgpembayaran
+            }
+    
+            $pembayaran->status_pembayaran = 'sudah';
+            $pembayaran->save();
+    
+            // Temukan pesanan terkait
+            $pesanan = Pesanan::findOrFail($pesanan_id);
+            $pesanan->status_pesanan = 'dicek';
+            $pesanan->save();
+    
+            // Komit transaksi database
+            DB::commit();
+    
+            return redirect('/pesanan')->with('success', 'Bukti pembayaran berhasil dikirim.');
+        } catch (\Exception $e) {
+            // Batalkan transaksi jika ada kesalahan
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengirim bukti pembayaran. Silakan coba lagi.');
         }
-
-        $pesanan->status_pesanan = 'menunggu_verifikasi';
-        $pesanan->save();
-
-        return redirect()->route('pesanan.index')->with('success', 'Bukti pembayaran berhasil dikirim.');
     }
+    
 
 }
