@@ -27,7 +27,7 @@
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">{{ Auth::user()->nama }} </a>
-                            <a class="dropdown-item" href="/pesanan/{{ Auth::user()->id }}">Pesanan saya</a>
+                            <a class="dropdown-item" href="/pesanan">Pesanan saya</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout">Keluar</a>
                         </div>

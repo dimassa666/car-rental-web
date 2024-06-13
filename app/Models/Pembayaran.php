@@ -19,6 +19,7 @@ class Pembayaran extends Model
         'pesanan_id', 
         'pelanggan_id', 
         'karyawan_id',
+        'foto_pembayaran',
     ];
 
     public function pesanan()

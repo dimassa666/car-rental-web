@@ -108,10 +108,10 @@
                                         Rp{{ number_format($item->harga_sewa, 0, ',', '.') }}<span>/hari</span></p>
                                 </div>
                                 <p class="d-flex mb-0 d-block">
-                                    <a href="/pesanan/{{ $item->kendaraan_id }}"
-                                        class="btn btn-primary py-2 mr-1">Pesan!</a>
                                     <a href="/kendaraan/{{ $item->kendaraan_id }}"
-                                        class="btn btn-secondary py-2 ml-1">Detail</a>
+                                        class="btn btn-secondary py-2 mr-1">Detail</a>
+                                    <a href="/pesanan/buat/{{ $item->kendaraan_id }}"
+                                        class="btn btn-primary py-2 ml-1">Pesan</a>
                                 </p>
                             </div>
                         </div>

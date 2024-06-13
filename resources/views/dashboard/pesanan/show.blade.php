@@ -34,7 +34,7 @@
                                 </tr>
                                 <tr>
                                     <th>Status Pesanan</th>
-                                    <td>{{ $pesanan->status_pesanan }}</td>
+                                    <td class="text-uppercase">{{ $pesanan->status_pesanan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Sopir</th>
@@ -46,11 +46,16 @@
                                 </tr>
                                 <tr>
                                     <th>Kendaraan</th>
-                                    <td>{{ $pesanan->kendaraan->merk . ' ' . $pesanan->kendaraan->tipe }}</td>
+                                    <td class="text-uppercase">
+                                        {{ $pesanan->kendaraan->merk . ' ' . $pesanan->kendaraan->tipe }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Lepas Kunci</th>
-                                    <td>{{ $pesanan->lepasKunci ? $pesanan->lepasKunci->nama : '-' }}</td>
+                                    <th>Lokasi Pengantaran</th>
+                                    <td class="text-capitalize">{{ $pesanan->lepasKunci->lokasi_antar }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Lokasi Penjemputan</th>
+                                    <td class="text-capitalize">{{ $pesanan->lepasKunci->lokasi_jemput }}</td>
                                 </tr>
                                 <tr>
                                     <th>Dibuat Pada</th>
@@ -144,6 +149,7 @@
                                     <th>Metode</th>
                                     <th>Jumlah Dibayar</th>
                                     <th>Waktu Pembayaran</th>
+                                    <th>Bukti Pembayaran</th>
                                     <th>Status Pembayaran</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -153,6 +159,14 @@
                                     <td class="text-uppercase">{{ $pesanan->pembayaran->metode }}</td>
                                     <td>{{ $pesanan->pembayaran->jumlah_sudah_dibayar }}</td>
                                     <td>{{ $pesanan->pembayaran->waktu_pembayaran }}</td>
+                                    <td>
+                                        @if ($pesanan->pembayaran->foto_pembayaran)
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#fotoPembayaranModal">
+                                                Lihat Foto
+                                            </button>
+                                        @endif
+                                    </td>
                                     <td>
                                         <form
                                             action="{{ route('dashboard.pembayaran.update', $pesanan->pembayaran->pembayaran_id) }}"
@@ -174,6 +188,31 @@
                                         </form>
                                     </td>
                                 </tr>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="fotoPembayaranModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="fotoPembayaranModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="fotoPembayaranModalLabel">Foto Pembayaran</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/' . $pesanan->pembayaran->foto_pembayaran) }}"
+                                                    class="img-fluid" alt="Foto Pembayaran">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </tbody>
                         </table>
                     </div>

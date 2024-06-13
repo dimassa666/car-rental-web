@@ -15,54 +15,19 @@ class DummyUsersSeeder extends Seeder
     {
         $userData = [
             [
-                'nama'=>'Mas Pelanggan',
+                'nama'=>'Rendy Fernando',
                 'email'=>'pelanggan@gmail.com',
                 'role'=>'pelanggan',
                 'no_telepon'=>'0811111111',
-                'password'=>bcrypt('123456'),
-            ], 
-            [
-                'nama'=>'Mas Karyawan',
-                'email'=>'karyawan@gmail.com',
-                'role'=>'karyawan',
-                'no_telepon'=>'0822222222',
-                'password'=>bcrypt('123456'),
-            ],
-            [
-                'nama'=>'Robin Hood',
-                'email'=>'pelanggan1@gmail.com',
-                'role'=>'pelanggan',
-                'no_telepon'=>'08214928',
-                'password'=>bcrypt('123456'),
-            ], 
-            [
-                'nama'=>'Musk Elon',
-                'email'=>'pelanggan2@gmail.com',
-                'role'=>'pelanggan',
-                'no_telepon'=>'081442156',
-                'password'=>bcrypt('123456'),
-            ], 
-            [
-                'nama'=>'Boni Frida',
-                'email'=>'pelanggan3@gmail.com',
-                'role'=>'pelanggan',
-                'no_telepon'=>'0812365423',
-                'password'=>bcrypt('123456'),
-            ], 
-            [
-                'nama'=>'Vero Supriyadi',
-                'email'=>'pelanggan4@gmail.com',
-                'role'=>'pelanggan',
-                'no_telepon'=>'0844444444',
-                'password'=>bcrypt('123456'),
+                'password'=>bcrypt('12345678'),
             ], 
             [
                 'nama'=>'Kamka Mahendra',
-                'email'=>'pelanggan5@gmail.com',
-                'role'=>'pelanggan',
-                'no_telepon'=>'0842837121',
-                'password'=>bcrypt('123456'),
-            ], 
+                'email'=>'karyawan@gmail.com',
+                'role'=>'karyawan',
+                'no_telepon'=>'0822222222',
+                'password'=>bcrypt('12345678'),
+            ],
         ];
 
         foreach($userData as $key => $val){
