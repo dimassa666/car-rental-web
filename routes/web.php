@@ -36,8 +36,8 @@ Route::get('/car', function () {
     return view('car');
 });
 Route::get('/booking', function () {
-    $kendaraan = Kendaraan::take(1)->get();
-    return view('booking',['Kendaraan'=> $kendaraan]);
+    // $kendaraan = Kendaraan::take(1)->get();
+    return view('booking');
 });
 
 Route::get('/car-single', function () {

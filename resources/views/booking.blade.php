@@ -150,49 +150,6 @@
                 <button type="button" class="checkout-btn btn-primary" onclick="window.location.href='index.html'">Pesan Sekarang</button>            </div>
         
         </div>
-        {{-- <div class="right-column"> --}}
-            {{-- <div class="total-cost-box  ">
-                <h2>Rincian Pesanan</h2>
-                 <!-- Subtotal dan Total Pembayaran -->
-        <div class="cost-details">
-            <div class="form-group div">
-                <label>Subtotal Kendaraan:</label>
-                <span id="subtotal_vehicle">Rp0</span>
-            </div>
-
-            <div class="form-group div">
-                <label>Subtotal Antar Jemput:</label>
-                <span id="subtotal_delivery_pickup">Rp0</span>
-            </div>
-
-            <div class="form-group div">
-                <label>Subtotal Sopir:</label>
-                <span id="subtotal_driver">Rp0</span>
-            </div>
-
-            <div class="form-group vocer">
-                <label>Potongan Voucher:</label>
-                <span id="discount_voucher">Rp0</span>
-            </div>
-
-            <div class="form-group total-payment">
-                <label>Total:</label>
-                <span id="total_payment">Rp0</span>
-            </div>
-            <!-- Bagian Informasi Penting -->
-            <div class="important-info shadow p-3 mb-4 bg-white">
-                <h2>Informasi Penting</h2>
-                <ul>
-                    <li><strong>Periksa Pembatasan Usia.</strong> Pengemudi harus menunjukkan SIM yang valid dan kartu kredit atau debit di konter atas namanya. Penggunaan kartu debit mungkin tunduk pada batasan tertentu atau tidak diperbolehkan di beberapa lokasi. Periksa kebijakan lokasi untuk detailnya.</li>
-                    <li>Periksa kebijakan lokasi untuk kemungkinan pembatasan usia atau penyewa lokal.</li>
-                    <li>Pembatalan gratis untuk rental mobil tersedia. Lihat Ketentuan Pemesanan untuk kebijakan mitra lengkap.</li>
-                    <li>Dengan memilih Book & Pay Later, Anda setuju dengan Ketentuan Pemesanan, Kebijakan dan Aturan Rental Mobil, Syarat & Ketentuan, dan Kebijakan Privasi.</li>
-                </ul>
-            </div>
-            <div class="button-wrap">
-                <button type="button" class="checkout-btn btn-primary" onclick="window.location.href='index.html'">Pesan Sekarang</button>            </div>
-        
-        </div> --}}
         <div class="right-column">
             <div class="total-cost-box  ">
                 <h2>Rincian Pesanan</h2>
@@ -229,4 +186,29 @@
     
 </div>
     <x-mainfooter></x-mainfooter>
+
+    <script>
+        const scrollableSection = document.getElementById('scrollable-section');
+        let isMouseOver = false;
+    
+        // Fungsi untuk scroll otomatis
+        function autoScroll() {
+            if (!isMouseOver) {
+                scrollableSection.scrollLeft += 1; // Menyesuaikan kecepatan pengguliran
+            }
+        }
+    
+        // Event listener untuk mendeteksi mouse over
+        scrollableSection.addEventListener('mouseover', () => {
+            isMouseOver = true;
+        });
+    
+        scrollableSection.addEventListener('mouseout', () => {
+            isMouseOver = false;
+        });
+    
+        // Interval untuk pengguliran otomatis
+        setInterval(autoScroll, 20); // Menyesuaikan kecepatan pengguliran
+    </script>
+    
 @endsection
