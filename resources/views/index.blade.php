@@ -26,51 +26,76 @@
                 <div class="col-md-12	featured-top">
                     <div class="row no-gutters">
                         <div class="col-md-4 d-flex align-items-center">
-                            <form action="#" class="request-form ftco-animate bg-primary">
-                                <h2>Mulai Perjalananmu</h2>
+                            <form method="GET" action="{{ route('kendaraan') }}"
+                                class="request-form ftco-animate bg-primary">
+                                <h2>Sesuaikan Kendaraan</h2>
                                 <div class="form-group">
-                                    <label for="" class="label">Lokasi Penjemputan</label>
-                                    <input type="text" class="form-control"
-                                        placeholder="Bandara, Terminal, Stasiun, dll">
+                                    <label for="" class="label">Merk mobil</label>
+                                    <input type="text" class="form-control" name="search"
+                                        placeholder="Inova, Alphard, Fortuner, dll.">
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="label">Lokasi Pengembalian</label>
-                                    <input type="text" class="form-control"
-                                        placeholder="Bandara, Terminal, Stasiun, dll">
+                                    <label for="jenis_mobil" class="label">Jenis mobil</label>
+                                    <select name="jenis" class="form-control" id="jenis_mobil">
+                                        <option value="">Jenis</option>
+                                        <option class="text-dark" value="suv"
+                                            {{ request('jenis') == 'suv' ? 'selected' : '' }}>SUV
+                                        </option>
+                                        <option class="text-dark" value="mpv"
+                                            {{ request('jenis') == 'mpv' ? 'selected' : '' }}>MPV
+                                        </option>
+                                        <option class="text-dark" value="sedan"
+                                            {{ request('jenis') == 'sedan' ? 'selected' : '' }}>Sedan
+                                        </option>
+                                        <option class="text-dark" value="sport"
+                                            {{ request('jenis') == 'sport' ? 'selected' : '' }}>Sport
+                                        </option>
+                                        <option class="text-dark" value="convertible"
+                                            {{ request('jenis') == 'convertible' ? 'selected' : '' }}>Convertible</option>
+                                        <option class="text-dark" value="elektrik"
+                                            {{ request('jenis') == 'elektrik' ? 'selected' : '' }}>
+                                            Elektrik</option>
+                                        <option class="text-dark" value="lcgc"
+                                            {{ request('jenis') == 'lcgc' ? 'selected' : '' }}>LCGC
+                                        </option>
+                                        <option class="text-dark" value="minibus"
+                                            {{ request('jenis') == 'minibus' ? 'selected' : '' }}>
+                                            Minibus</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis_mobil" class="label">Transmisi</label>
+                                    <select name="transmisi" class="form-control" id="jenis_mobil">
+                                        <option value="">Jenis</option>
+                                        <option class="text-dark" value="otomatis"
+                                            {{ request('transmisi') == 'otomatis' ? 'selected' : '' }}>Otomatis
+                                        </option>
+                                        <option class="text-dark" value="manual"
+                                            {{ request('transmisi') == 'manual' ? 'selected' : '' }}>Manual
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="d-flex">
                                     <div class="form-group mr-2">
-                                        <label for="" class="label">penyewaan</label>
-                                        <input type="text" class="form-control" id="book_pick_date"
-                                            placeholder="Tanggal">
+                                        <label for="" class="label">Harga Min</label>
+                                        <input type="text" class="form-control" name="harga_min"
+                                            placeholder="Harga Terendah">
                                     </div>
                                     <div class="form-group ml-2">
-                                        <label for="" class="label"> Pengembalian</label>
-                                        <input type="text" class="form-control" id="book_off_date" placeholder="Tanggal">
+                                        <label for="" class="label">Harga Max</label>
+                                        <input type="text" class="form-control" name="harga_max"
+                                            placeholder="Harga Tertinggi">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="label">Waktu Penjemputan</label>
-                                    <input type="text" class="form-control" id="time_pick" placeholder="Waktu">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Sewa Mobil Sekarang" class="btn btn-secondary py-3 px-4">
+                                    <input type="submit" value="Cari" class="btn btn-secondary py-3 px-4">
                                 </div>
                             </form>
                         </div>
                         <div class="col-md-8 d-flex align-items-center">
                             <div class="services-wrap rounded-right w-100">
-                                <h3 class="heading-section mb-4">Pilihan terbaik untuk Menyewa Mobil Impian Anda</h3>
+                                <h3 class="heading-section mb-4">Pilihan Terbaik untuk Menyewa Mobil Impian Anda</h3>
                                 <div class="row d-flex mb-4">
-                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-                                        <div class="services w-100 text-center">
-                                            <div class="icon d-flex align-items-center justify-content-center"><span
-                                                    class="flaticon-route"></span></div>
-                                            <div class="text w-100">
-                                                <h3 class="heading mb-2">Tentukan Lokasi Penjemputan Anda</h3>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-4 d-flex align-self-stretch ftco-animate">
                                         <div class="services w-100 text-center">
                                             <div class="icon d-flex align-items-center justify-content-center"><span
@@ -89,8 +114,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                                        <div class="services w-100 text-center">
+                                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                                    class="flaticon-route"></span></div>
+                                            <div class="text w-100">
+                                                <h3 class="heading mb-2">Tentukan Lokasi Penjemputan Anda</h3>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p><a href="/kendaraan" class="btn btn-primary py-3 px-4">Pesan Mobil Terbaik Anda</a></p>
+                                <p><a href="/kendaraan" class="btn btn-primary py-3 px-4">Lihat Daftar Kendaraan</a></p>
                             </div>
                         </div>
                     </div>

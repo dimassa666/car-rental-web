@@ -15,7 +15,7 @@
                 <li class="nav-item {{ Request::is('about') ? 'active' : '' }}"><a href="/about"
                         class="nav-link">About</a></li>
                 <li class="nav-item {{ Request::is('kendaraan') ? 'active' : '' }}"><a href="/kendaraan"
-                        class="nav-link">Kendaraan</a></li>
+                        class="nav-link">Sewa</a></li>
                 <li class="nav-item {{ Request::is('kontak') ? 'active' : '' }}"><a href="/kontak"
                         class="nav-link">Kontak</a></li>
 
