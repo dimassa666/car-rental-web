@@ -1,8 +1,9 @@
 @extends('layout/aplikasi')
 
 @section('konten')
-    <x-mainnavbar></x-mainnavbar>
 
+    <x-mainnavbar></x-mainnavbar>
+    
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('main/images/bg_1.jpg');"
         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
