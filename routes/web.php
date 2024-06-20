@@ -8,6 +8,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,14 @@ Route::put('/dashboard/pembayaran/{id}', [DashboardPesananController::class, 'up
 // AKHIR UNTUK DASHBOARD KARYAWAN
 
 
+//METODE POST UNTUK MENGIRIM PROMPT KE BACKEND GOLANG
+Route::post('/api/send-prompt', function (Illuminate\Http\Request $request) {
+    $response = Http::post('http://localhost:8080/gemini', [
+        'prompt' => $request->input('prompt')
+    ]);
+    return $response->json();
+});
 
-
-
-
+Route::get('/prompt', function () {
+    return view('prompt');
+});
