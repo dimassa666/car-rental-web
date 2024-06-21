@@ -130,16 +130,14 @@
             axios.post('/api/send-prompt', { prompt: message })
               .then(function(response) {
                 const botResponse = response.data.result;
-                // Tambahkan balasan dari bot ke kotak obrolan
                 appendMessage('bot', botResponse);
               })
               .catch(function(error) {
                 console.error('Error sending message:', error);
-                appendMessage('bot', 'Sorry, there was an error.');
+                appendMessage('bot', 'Maaf, terjadi kesalahan server');
               });
           }
     
-          // Fungsi untuk menambahkan pesan ke kotak obrolan
           function appendMessage(sender, message) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', sender);
@@ -157,7 +155,6 @@
             }
     
             chatBox.appendChild(messageDiv);
-            // Scroll ke bawah chatBox saat ada pesan baru
             chatContainer.scrollTo({
               top: chatContainer.scrollHeight,
               behavior: 'smooth'
