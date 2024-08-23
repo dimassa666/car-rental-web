@@ -47,7 +47,7 @@ class DashboardPesananController extends Controller
             $pesanan->update(['status_pesanan' => 'dicek']);
         }
 
-        return redirect('/dashboard/kendaraan')->with('success', 'Status pembayaran dan pesanan berhasil diperbarui.');
+        return redirect('/dashboard')->with('success', 'Status pembayaran dan pesanan berhasil diperbarui.');
     }
 
 }

@@ -32,8 +32,8 @@ class DashboardController extends Controller
         $totalPembayaran = Pembayaran::count();
 
         $recentPesanan = Pesanan::with('users', 'kendaraan')
+            ->where('status_pesanan', 'dicek')
             ->orderBy('pesanan_id', 'desc')
-            ->limit(5)
             ->get();
 
         return view('dashboard/index', compact('totalUsers', 'totalKendaraan', 'totalPesanan', 'totalVoucher', 'totalPembayaran', 'recentPesanan', 'ongoingOrders'));

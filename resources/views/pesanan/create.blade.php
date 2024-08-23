@@ -72,13 +72,13 @@
                             <div class="form-group">
                                 <label for="start_date">Tanggal Mulai Sewa</label>
                                 <input type="text" id="start_date" name="start_date" class="form-control datepicker"
-                                    required onchange="calculateTotalCost()">
+                                    required onchange="calculateTotalCost()" autocomplete="off">
                             </div>
 
                             <div class="form-group">
                                 <label for="end_date">Tanggal Pengembalian</label>
                                 <input type="text" id="end_date" name="end_date" class="form-control datepicker"
-                                    required onchange="calculateTotalCost()">
+                                    required onchange="calculateTotalCost()" autocomplete="off">
                             </div>
 
                             <div class="form-group">

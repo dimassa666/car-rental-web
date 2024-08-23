@@ -1,9 +1,8 @@
 @extends('layout/aplikasi')
 
 @section('konten')
-
     <x-mainnavbar></x-mainnavbar>
-    
+
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('main/images/bg_1.jpg');"
         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
@@ -79,12 +78,12 @@
                                 <div class="d-flex">
                                     <div class="form-group mr-2">
                                         <label for="" class="label">Harga Min</label>
-                                        <input type="text" class="form-control" name="harga_min"
+                                        <input type="number" class="form-control" name="harga_min"
                                             placeholder="Harga Terendah">
                                     </div>
                                     <div class="form-group ml-2">
                                         <label for="" class="label">Harga Max</label>
-                                        <input type="text" class="form-control" name="harga_max"
+                                        <input type="number" class="form-control" name="harga_max"
                                             placeholder="Harga Tertinggi">
                                     </div>
                                 </div>

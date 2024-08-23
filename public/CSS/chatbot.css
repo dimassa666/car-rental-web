@@ -1,33 +1,25 @@
-body{
-    background: #EEEEEE;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container-chat {
+.container-chat {
     position: relative;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .toggle-chat {
+}
+
+.toggle-chat {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
     padding: 10px 20px;
-    background-color: #04CB28;
+    background-color: #e0e0e0;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    
-  }
-  
-  .card-chat {
+}
+
+.card-chat {
     display: none;
     width: 300px;
     border: none;
@@ -39,76 +31,76 @@ body{
     z-index: 999;
     flex-direction: column;
     max-height: calc(100vh - 300px);
-    overflow-y: auto; 
-    background-color: white; 
-  }
-  
-  .adiv {
-    background: #04CB28;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.adiv {
+    background: #3d6289;
     border-radius: 15px 15px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-  }
-  
-  .adiv i {
+}
+
+.adiv i {
     color: white;
     cursor: pointer;
-  }
-  
-  .chat-container {
+}
+
+.chat-container {
     flex-grow: 1;
     padding: 10px;
-  }
-  
-  .message {
+}
+
+.message {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
     align-items: flex-start;
-  }
-  
-  .message-content {
-    color: #EEEEEE;
+}
+
+.message-content {
+    color: #eeeeee;
     max-width: 70%;
     padding: 10px;
     border-radius: 20px;
     word-wrap: break-word;
-  }
+}
 
-  .message.user {
+.message.user {
     flex-direction: row-reverse;
-  }
-  
-  .avatar {
+}
+
+.avatar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
-  }
-  
-  .form-control {
+}
+
+.form-control {
     border-radius: 12px;
-    border: 1px solid #F0F0F0;
+    border: 1px solid #f0f0f0;
     font-size: 12px;
     resize: none;
     height: 60px;
     padding: 10px;
     margin-bottom: 10px;
-  }
-  
-  .form-control:focus {
+}
+
+.form-control:focus {
     box-shadow: none;
-  }
-  
-  .form-control::placeholder {
-    color: #C4C4C4;
-  }
-  
-  .live-chat-title {
+}
+
+.form-control::placeholder {
+    color: #c4c4c4;
+}
+
+.live-chat-title {
     font-size: medium;
     font-weight: bold;
     margin: 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  }
+}

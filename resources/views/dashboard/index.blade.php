@@ -86,7 +86,6 @@
         </div>
 
 
-
         <!-- Row for Orders -->
 
         <div class="row">
@@ -151,12 +150,13 @@
                                         <th>Waktu Mulai</th>
                                         <th>Waktu Selesai</th>
                                         <th>Status Pesanan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($recentPesanan as $pesanan)
                                         <tr>
-                                            <td>P{{ $pesanan->pesanan_id }}</td>
+                                            <td>{{ $pesanan->pesanan_id }}</td>
                                             <td class="text-capitalize">{{ $pesanan->users->nama }}</td>
                                             <td class="text-uppercase">{{ $pesanan->kendaraan->merk }}
                                                 {{ $pesanan->kendaraan->tipe }}
@@ -164,6 +164,10 @@
                                             <td>{{ $pesanan->waktu_mulai }}</td>
                                             <td>{{ $pesanan->waktu_selesai }}</td>
                                             <td>{{ $pesanan->status_pesanan }}</td>
+                                            <td>
+                                                <a href="/dashboard/pesanan/{{ $pesanan->pesanan_id }}"
+                                                    class="badge bg-info text-white">CEK</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -49,10 +49,10 @@
                                         {{ $item->kendaraan->tipe . ' ' . $item->kendaraan->tahun_produksi }}
                                     </a>
                                 </h3>
-                                <p class="mb-0"><strong>Waktu Mulai:</strong>
+                                <p class="mb-0"><strong>Mulai:</strong>
                                     {{ \Carbon\Carbon::parse($item->waktu_mulai)->locale('id')->isoFormat('D MMMM Y | HH:mm') }}
                                 </p>
-                                <p class="mb-0"><strong>Waktu Selesai:</strong>
+                                <p class="mb-0"><strong>Selesai:</strong>
                                     {{ \Carbon\Carbon::parse($item->waktu_selesai)->locale('id')->isoFormat('D MMMM Y | HH:mm') }}
                                 </p>
                                 <p class="mb-0 text-capitalize">

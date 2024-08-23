@@ -75,7 +75,7 @@ Route::put('/dashboard/pembayaran/{id}', [DashboardPesananController::class, 'up
 
 //METODE POST UNTUK MENGIRIM PROMPT KE BACKEND GOLANG
 Route::post('/api/send-prompt', function (Illuminate\Http\Request $request) {
-    $response = Http::post('http://localhost:8080/gemini', [
+    $response = Http::post('http://127.0.0.1:8080/gemini', [
         'prompt' => $request->input('prompt')
     ]);
     return $response->json();
